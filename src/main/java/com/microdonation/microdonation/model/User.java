@@ -46,8 +46,6 @@ public class User  {
     @NotNull
     private String userType;
 
-    @NotBlank
-    @Size(max = 10)
     private long contactNo;
 
     private String otp;
@@ -159,4 +157,8 @@ public class User  {
     public void setInActiveBy(String inActiveBy) {
         this.inActiveBy = inActiveBy;
     }
+
+    public long getContactNo() { return contactNo; }
+
+    public void setContactNo(long contactNo) { this.contactNo = contactNo; }
 }

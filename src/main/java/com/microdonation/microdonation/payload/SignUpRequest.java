@@ -27,4 +27,6 @@ public class SignUpRequest {
 
     private String userType;
 
+    private long contactNo;
+
 }
