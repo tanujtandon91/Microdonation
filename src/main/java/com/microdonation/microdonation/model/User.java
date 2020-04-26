@@ -7,16 +7,17 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
+@Table(name = "M_MDP_USERS", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-            "username"
+            "szUsername"
         }),
         @UniqueConstraint(columnNames = {
-            "email"
+            "szEmail"
         })
 })
 public class User  {
@@ -26,48 +27,39 @@ public class User  {
 
     @NotBlank
     @Size(max = 40)
-    private String name;
+    private String szName;
 
     @NotBlank
     @Size(max = 15)
-    private String username;
+    private String szUsername;
 
     @NaturalId
     @NotBlank
     @Size(max = 40)
     @Email
-    private String email;
+    private String szEmail;
 
     @NotBlank
     @Size(max = 100)
-    private String password;
+    private String szPassword;
 
     @Size(max = 10)
     @NotNull
-    private String userType;
+    private String szRole;
 
-    private long contactNo;
+    private long szMobile;
 
-    private String otp;
+    private long iOtp;
 
-    private boolean active;
+    private boolean cUserStatus;
 
-    private String createdAt;
+    private boolean cUserLocked;
 
-    private String inActiveAt;
-
-    @Size(max = 100)
-    private String inActiveBy;
+    @Temporal(TemporalType.DATE)
+    private Calendar dtCreated;
 
     public User() {
 
-    }
-
-    public User(String name, String username, String email, String password) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
@@ -78,87 +70,83 @@ public class User  {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getSzName() {
+        return szName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setSzName(String szName) {
+        this.szName = szName;
     }
 
-    public String getName() {
-        return name;
+    public String getSzUsername() {
+        return szUsername;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSzUsername(String szUsername) {
+        this.szUsername = szUsername;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSzEmail() {
+        return szEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSzEmail(String szEmail) {
+        this.szEmail = szEmail;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSzPassword() {
+        return szPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSzPassword(String szPassword) {
+        this.szPassword = szPassword;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getSzRole() {
+        return szRole;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setSzRole(String szRole) {
+        this.szRole = szRole;
     }
 
-    public String getOtp() {
-        return otp;
+    public long getSzMobile() {
+        return szMobile;
     }
 
-    public void setOtp(String otp) {
-        this.otp = otp;
+    public void setSzMobile(long szMobile) {
+        this.szMobile = szMobile;
     }
 
-    public boolean isActive() {
-        return active;
+    public long getiOtp() {
+        return iOtp;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setiOtp(long iOtp) {
+        this.iOtp = iOtp;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public boolean iscUserStatus() {
+        return cUserStatus;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setcUserStatus(boolean cUserStatus) {
+        this.cUserStatus = cUserStatus;
     }
 
-    public String getInActiveAt() {
-        return inActiveAt;
+    public boolean iscUserLocked() {
+        return cUserLocked;
     }
 
-    public void setInActiveAt(String inActiveAt) {
-        this.inActiveAt = inActiveAt;
+    public void setcUserLocked(boolean cUserLocked) {
+        this.cUserLocked = cUserLocked;
     }
 
-    public String getInActiveBy() {
-        return inActiveBy;
+    public Calendar getDtCreated() {
+        return dtCreated;
     }
 
-    public void setInActiveBy(String inActiveBy) {
-        this.inActiveBy = inActiveBy;
+    public void setDtCreated(Calendar dtCreated) {
+        this.dtCreated = dtCreated;
     }
-
-    public long getContactNo() { return contactNo; }
-
-    public void setContactNo(long contactNo) { this.contactNo = contactNo; }
 }

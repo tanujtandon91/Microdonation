@@ -38,10 +38,10 @@ public class UserPrincipal implements UserDetails {
     public static UserPrincipal create(User user) {
         return new UserPrincipal(
                 user.getId(),
-                user.getName(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword()
+                user.getSzName(),
+                user.getSzUsername(),
+                user.getSzEmail(),
+                user.getSzPassword()
                         );
     }
 

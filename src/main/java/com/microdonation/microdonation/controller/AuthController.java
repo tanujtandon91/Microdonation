@@ -2,7 +2,6 @@ package com.microdonation.microdonation.controller;
 
 import com.microdonation.microdonation.event.OnRegistrationCompleteEvent;
 import com.microdonation.microdonation.model.User;
-import com.microdonation.microdonation.model.UserDemographicDetails;
 import com.microdonation.microdonation.payload.*;
 import com.microdonation.microdonation.repository.UserRepository;
 import com.microdonation.microdonation.security.JwtTokenProvider;
@@ -10,7 +9,6 @@ import com.microdonation.microdonation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,8 +33,6 @@ public class AuthController {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
     @Autowired
     JwtTokenProvider tokenProvider;
@@ -65,56 +61,28 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest, HttpServletRequest request) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userRepository.existsBySzUsername(signUpRequest.getUsername())) {
             return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsBySzEmail(signUpRequest.getEmail())) {
             return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
+        User result = null;
+        try {
+           result =  userService.createOrUpdateUser(signUpRequest,request);
+        }
+        catch (Exception e){
 
-        // Creating user's account
-//        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-//                signUpRequest.getEmail(), signUpRequest.getPassword());
-        User user = new User();
-        user.setUserType(signUpRequest.getUserType());
-        user.setContactNo(signUpRequest.getContactNo());
-        user.setEmail(signUpRequest.getEmail());
-        user.setName(signUpRequest.getName());
-        user.setUsername(signUpRequest.getUsername());
-        user.setPassword(signUpRequest.getPassword());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setUserType(signUpRequest.getUserType());
-        User result = userRepository.saveAndFlush(user);
-
-        String appUrl = request.getContextPath();
-        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(result, request.getLocale(), appUrl));
-        userService.sendUserActivationEmail(new OnRegistrationCompleteEvent(result, request.getLocale(), appUrl));
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
-        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
-    }
-
-    @PostMapping("/validateUser")
-    public ResponseEntity<?> validateAndActivate(@Valid @RequestBody ActivateUser activateUser) {
-
-        Optional<User> users = userRepository.findByUsername(activateUser.getUserName());
-        User user = users.get();
-        if (user.getOtp().equals(activateUser.getOtp())) {
-            user.setActive(true);
-            userRepository.saveAndFlush(user);
-        } else {
-            return new ResponseEntity(new ApiResponse(false, "OTP does not match"),
+            return new ResponseEntity(new ApiResponse(false, "Some Exception Occured !! User Creation Failed"),
                     HttpStatus.BAD_REQUEST);
         }
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(activateUser.getUserName()).toUri();
-
+                .buildAndExpand(signUpRequest.getUsername()).toUri();
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
 
@@ -142,21 +110,11 @@ public class AuthController {
     @RequestMapping(value = "/userprofile/{userId}", method = {RequestMethod.GET})
     public ResponseEntity<?> getUserProfile(@PathVariable(value = "userId") Long userId){
 
-
-
-
         return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
 
     @RequestMapping(value = "/updateProfile", method = {RequestMethod.POST})
-    public ResponseEntity<?> updateUserProfile(@Valid @RequestBody UserDetails userDetails){
-
-
-        UserDemographicDetails userDemographicDetails =  new UserDemographicDetails();
-
-
-
-
+    public ResponseEntity<?> updateUserProfile(@Valid @RequestBody MdpNGoDetails mdpNGoDetails){
 
         return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }

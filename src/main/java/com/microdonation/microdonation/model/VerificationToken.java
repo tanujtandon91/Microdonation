@@ -16,10 +16,10 @@ public class VerificationToken {
     private Long id;
 
     @Size(max = 4000)
-    private String token;
+    private String szToken;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "userId")
+    @JoinColumn(nullable = false, name = "szUserId")
     private User user;
 
     private Date expiryDate;
@@ -47,11 +47,11 @@ public class VerificationToken {
     }
 
     public String getToken() {
-        return token;
+        return szToken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setToken(String szToken) {
+        this.szToken = szToken;
     }
 
     public User getUser() {
