@@ -4,6 +4,7 @@ import com.microdonation.microdonation.event.OnRegistrationCompleteEvent;
 import com.microdonation.microdonation.exception.AppException;
 import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.model.VerificationToken;
+import com.microdonation.microdonation.payload.MdpDonorDetails;
 import com.microdonation.microdonation.payload.MdpNGoDetails;
 import com.microdonation.microdonation.payload.SignUpRequest;
 import com.microdonation.microdonation.repository.DonorRepository;
@@ -11,6 +12,7 @@ import com.microdonation.microdonation.repository.NgoRepository;
 import com.microdonation.microdonation.repository.UserRepository;
 import com.microdonation.microdonation.repository.VerificationTokenRepository;
 import com.microdonation.microdonation.security.JwtTokenProvider;
+import com.microdonation.microdonation.service.DonorService;
 import com.microdonation.microdonation.service.NgoService;
 import com.microdonation.microdonation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     NgoService ngoService;
+
+    @Autowired
+    DonorService donorService;
 
 
 
@@ -136,6 +141,9 @@ public class UserServiceImpl implements UserService {
             user.setcUserStatus(true);
             userRepository.saveAndFlush(user);
             tokenVerified = true;
+
+
+
         }
         return tokenVerified;
     }
@@ -154,7 +162,12 @@ public class UserServiceImpl implements UserService {
             result = userRepository.saveAndFlush(user);
             if(signUpRequest.getRole().equals("D"))
             {
-
+                MdpDonorDetails mdpDonorDetails = new MdpDonorDetails();
+                mdpDonorDetails.setUser(result);
+                mdpDonorDetails.setDonorName(signUpRequest.getName());
+                mdpDonorDetails.setEmail(signUpRequest.getEmail());
+                mdpDonorDetails.setMobile(String.valueOf(signUpRequest.getContactNo()));
+                donorService.createDonorDetails(mdpDonorDetails);
             }
             else if(signUpRequest.getRole().equals("N"))
             {
@@ -173,9 +186,12 @@ public class UserServiceImpl implements UserService {
             sendUserActivationEmail(new OnRegistrationCompleteEvent(result, request.getLocale(), appUrl),result);
 
         }catch (Exception e){
-            throw new AppException("User Creation Failed");
+            throw new AppException(e.getMessage());
         }
         return result;
     }
+
+
+
 
 }

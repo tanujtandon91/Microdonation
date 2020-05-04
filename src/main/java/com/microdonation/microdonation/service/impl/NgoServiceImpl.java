@@ -31,7 +31,7 @@ public class NgoServiceImpl implements NgoService {
             ngoRepository.saveAndFlush(mdpNgo);
         }catch (Exception e)
         {
-            throw  new AppException("Ngo Data Save Failed");
+            throw  new AppException(e.getMessage());
         }
     }
 

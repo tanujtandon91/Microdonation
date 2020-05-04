@@ -5,26 +5,19 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "T_MDP_DONOR_RECUR_PMT_SETUP")
 
 public class TmdpDonorRecurPmtSetup {
 
-    // this is temp field for testing
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long iSeqID;
-
     // I_DONOR_ID	INTEGER	10
-    @OneToOne(targetEntity = MdpDonor.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "iDonorId" )
-    private Long iDonorId;
 
-    @OneToOne(targetEntity = MdpNgo.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "iNgoId")
-    private Long iNgoId;
+    @EmbeddedId
+    private DonorNGoMapping donorNGoMapping;
 
     //SZ_PMT_FREQ	STRING	1
     @NotBlank
@@ -37,8 +30,8 @@ public class TmdpDonorRecurPmtSetup {
     private float fAmount;
 
     //I_CYCLE_DAY	INTEGER	2
-    @Size (max=2)
-    //@Column(columnDefinition="COMMENT 'cycle Day'")
+    //@Size (max=2)
+    @Column( length = 2)
     private int iCycleDay;
 
     //  DT_NEXT_REMINDER	DATE
@@ -47,30 +40,21 @@ public class TmdpDonorRecurPmtSetup {
     private Calendar dtNextReminder;
 
     //  DT_CREATED	DATE
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     //@Column(columnDefinition="COMMENT 'Date of creation'")
-    private Calendar dtCreated;
+    private Date dtCreated;
 
     //SZ_Payment_gateway_code	STRING	20
     @Size(max = 20)
    // @Column(columnDefinition="COMMENT 'Payment gateway code'")
     private String szPaymentGetwayCode;
 
-
-    public Long getiDonorId() {
-        return iDonorId;
+    public DonorNGoMapping getDonorNGoMapping() {
+        return donorNGoMapping;
     }
 
-    public void setiDonorId(Long iDonorId) {
-        this.iDonorId = iDonorId;
-    }
-
-    public Long getiNgoId() {
-        return iNgoId;
-    }
-
-    public void setiNgoId(Long iNgoId) {
-        this.iNgoId = iNgoId;
+    public void setDonorNGoMapping(DonorNGoMapping donorNGoMapping) {
+        this.donorNGoMapping = donorNGoMapping;
     }
 
     public String getSzPmtFreq() {
@@ -105,11 +89,11 @@ public class TmdpDonorRecurPmtSetup {
         this.dtNextReminder = dtNextReminder;
     }
 
-    public Calendar getDtCreated() {
+    public Date getDtCreated() {
         return dtCreated;
     }
 
-    public void setDtCreated(Calendar dtCreated) {
+    public void setDtCreated(Date dtCreated) {
         this.dtCreated = dtCreated;
     }
 
@@ -120,4 +104,11 @@ public class TmdpDonorRecurPmtSetup {
     public void setSzPaymentGetwayCode(String szPaymentGetwayCode) {
         this.szPaymentGetwayCode = szPaymentGetwayCode;
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+
 }

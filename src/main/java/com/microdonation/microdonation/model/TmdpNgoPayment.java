@@ -17,11 +17,10 @@ public class TmdpNgoPayment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long iPaymnetId;
 
-    //I_NGO_ID	INTEGER	10			T_MDP_NGO	I_NGO_ID	NGO ID reference
-    @Id
+    //I_NGO_ID	INTEGER	10	T_MDP_NGO	I_NGO_ID	NGO ID reference
     @OneToOne(targetEntity = MdpNgo.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "iNgoId" )
-    private Long iNgoId;
+    private MdpNgo iNgoId;
 
     //DT_PAYMENT	DATE						Payment Date
     @Temporal(TemporalType.DATE)
@@ -43,7 +42,7 @@ public class TmdpNgoPayment implements Serializable {
     @Size(max = 20)
     private String szBankAccountNo;
 
-    //SZ_CHQ_UTR_NO	STRING	20					Cheque or UTR No.
+    //SZ_CHQ_UTR_NO	STRING	20	Cheque or UTR No.
     @Size(max = 20)
     private String szChqUtrNo;
 
@@ -55,11 +54,11 @@ public class TmdpNgoPayment implements Serializable {
         this.iPaymnetId = iPaymnetId;
     }
 
-    public Long getiNgoId() {
+    public MdpNgo getiNgoId() {
         return iNgoId;
     }
 
-    public void setiNgoId(Long iNgoId) {
+    public void setiNgoId(MdpNgo iNgoId) {
         this.iNgoId = iNgoId;
     }
 

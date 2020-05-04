@@ -7,9 +7,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "T_LOOKUP")
+@IdClass(tLookup.class)
 public class tLookup implements Serializable {
     @Id
     @NotBlank
@@ -23,8 +25,8 @@ public class tLookup implements Serializable {
     private String szLookupValue; //SZ_LOOKUP_VALUE
 
     //  DT_CREATED	DATE
-    @Temporal(TemporalType.DATE)
-    private Calendar dtCreated;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtCreated;
 
     public String getSzLookupType() {
         return szLookupType;
@@ -50,11 +52,11 @@ public class tLookup implements Serializable {
         this.szLookupValue = szLookupValue;
     }
 
-    public Calendar getDtCreated() {
+    public Date getDtCreated() {
         return dtCreated;
     }
 
-    public void setDtCreated(Calendar dtCreated) {
+    public void setDtCreated(Date dtCreated) {
         this.dtCreated = dtCreated;
     }
 }

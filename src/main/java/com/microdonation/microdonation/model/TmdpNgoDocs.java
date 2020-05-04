@@ -13,10 +13,9 @@ import java.util.Calendar;
 @Table(name = "T_MDP_NGO_DOCS")
 public class TmdpNgoDocs implements Serializable{
 
-    @Id
     @OneToOne(targetEntity = MdpNgo.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "iNgoId" )
-    private Long iNgoId;
+    private MdpNgo iNgoId;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long iDocumentId;  // I_DOCUMENT_ID
@@ -31,11 +30,11 @@ public class TmdpNgoDocs implements Serializable{
     @Temporal(TemporalType.DATE)
     private Calendar dtUpload; //DT_UPLOAD
 
-    public Long getiNgoId() {
+    public MdpNgo getiNgoId() {
         return iNgoId;
     }
 
-    public void setiNgoId(Long iNgoId) {
+    public void setiNgoId(MdpNgo iNgoId) {
         this.iNgoId = iNgoId;
     }
 

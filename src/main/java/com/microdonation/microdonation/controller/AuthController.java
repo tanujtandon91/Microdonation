@@ -76,7 +76,7 @@ public class AuthController {
         }
         catch (Exception e){
 
-            return new ResponseEntity(new ApiResponse(false, "Some Exception Occured !! User Creation Failed"),
+            return new ResponseEntity(new ApiResponse(false, e.getMessage()),
                     HttpStatus.BAD_REQUEST);
         }
 
@@ -97,6 +97,7 @@ public class AuthController {
                 verificationStatus = userService.verifyToken(token, userId);
             }
             if (verificationStatus) {
+
                 return ResponseEntity.ok().body(new ApiResponse(true, "User has been activated"));
             } else {
                 throw new Exception("Verification Failed");
@@ -107,8 +108,16 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(value = "/userprofile/{userId}", method = {RequestMethod.GET})
-    public ResponseEntity<?> getUserProfile(@PathVariable(value = "userId") Long userId){
+    @RequestMapping(value = "/userprofile/{userId}/{role}", method = {RequestMethod.GET})
+    public ResponseEntity<?> getUserProfile(@PathVariable(value = "userId") Long userId,@PathVariable(value = "role")String role){
+        if(role == "D")
+        {
+
+        }
+        else if(role == "N")
+        {
+
+        }
 
         return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
@@ -118,5 +127,6 @@ public class AuthController {
 
         return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
+
 
 }

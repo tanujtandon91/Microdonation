@@ -15,10 +15,10 @@ public class TmdpDonorRef implements Serializable{
 
 
    // I_DONOR_ID	INTEGER	10
-    @Id
     @OneToOne(targetEntity = MdpDonor.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "iDonorId" )
-    private Long iDonorId;
+    private MdpDonor iDonorId;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long iReferanceId;  // I_REFERENCE_ID
@@ -43,11 +43,11 @@ public class TmdpDonorRef implements Serializable{
 
     private int iReminderNo; //I_Reminder_No INTEGER	3
 
-    public Long getiDonorId() {
+    public MdpDonor getiDonorId() {
         return iDonorId;
     }
 
-    public void setiDonorId(Long iDonorId) {
+    public void setiDonorId(MdpDonor iDonorId) {
         this.iDonorId = iDonorId;
     }
 

@@ -10,19 +10,10 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "T_MDP_MY_NGO")
-public class TmdpMyNgo implements Serializable {
+public class TmdpMyNgo {
 
-    // I_DONOR_ID	INTEGER	10
-    @Id
-    private Long iDonorId;
-
-    @Id
-    private Long iNgoId;
-
-    //F_RECUR_PMT_ALLOC_1	STRING	1
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iRecurPayAllocSeq;
+    @EmbeddedId
+    DonorNGoMapping donorNGoMapping;
 
     //F_RECUR_PMT_ALLOC_1	FLOAT	3
     @Column(precision=3, scale=2)
@@ -33,28 +24,12 @@ public class TmdpMyNgo implements Serializable {
     //@Column(columnDefinition="COMMENT 'Date of creation'")
     private Calendar dtCreated;
 
-    public Long getiDonorId() {
-        return iDonorId;
+    public DonorNGoMapping getDonorNGoMapping() {
+        return donorNGoMapping;
     }
 
-    public void setiDonorId(Long iDonorId) {
-        this.iDonorId = iDonorId;
-    }
-
-    public Long getiNgoId() {
-        return iNgoId;
-    }
-
-    public void setiNgoId(Long iNgoId) {
-        this.iNgoId = iNgoId;
-    }
-
-    public int getiRecurPayAllocSeq() {
-        return iRecurPayAllocSeq;
-    }
-
-    public void setiRecurPayAllocSeq(int iRecurPayAllocSeq) {
-        this.iRecurPayAllocSeq = iRecurPayAllocSeq;
+    public void setDonorNGoMapping(DonorNGoMapping donorNGoMapping) {
+        this.donorNGoMapping = donorNGoMapping;
     }
 
     public float getfRecurPmtAllocPer() {
@@ -71,5 +46,15 @@ public class TmdpMyNgo implements Serializable {
 
     public void setDtCreated(Calendar dtCreated) {
         this.dtCreated = dtCreated;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

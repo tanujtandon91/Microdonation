@@ -13,10 +13,10 @@ import java.util.Calendar;
 @Table(name = "T_MDP_NGO_REF")
 public class TmdpNgoRef implements Serializable {
 
-    @Id
     @OneToOne(targetEntity = MdpNgo.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "iNgoId" )
-    private Long iNgoId;
+    private MdpNgo iNgoId;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long iNgoReferanceId;  // I_REFERENCE_ID
@@ -41,12 +41,16 @@ public class TmdpNgoRef implements Serializable {
 
     private int iReminderNo; //I_Reminder_No INTEGER	3
 
-    public Long getiNgoId() {
+    public MdpNgo getiNgoId() {
         return iNgoId;
     }
 
-    public void setiNgoId(Long iNgoId) {
+    public void setiNgoId(MdpNgo iNgoId) {
         this.iNgoId = iNgoId;
+    }
+
+    public Long getiNgoReferanceId() {
+        return iNgoReferanceId;
     }
 
     public Long iNgoReferanceId() {

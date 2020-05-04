@@ -51,6 +51,7 @@ public class User  {
 
     private long iOtp;
 
+    @Column(name="cUserStatus")
     private boolean cUserStatus;
 
     private boolean cUserLocked;
