@@ -1,7 +1,10 @@
 package com.microdonation.microdonation.service.impl;
 
+import com.google.gson.Gson;
 import com.microdonation.microdonation.event.OnRegistrationCompleteEvent;
 import com.microdonation.microdonation.exception.AppException;
+import com.microdonation.microdonation.model.MdpDonor;
+import com.microdonation.microdonation.model.MdpNgo;
 import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.model.VerificationToken;
 import com.microdonation.microdonation.payload.*;
@@ -213,6 +216,55 @@ public class UserServiceImpl implements UserService {
         return loginResponse;
     }
 
-
+    public Map<String, Object> getUserDetails(Long userId)
+    {
+    	Map<String,Object> userDetails = new HashMap<String, Object>();
+        Optional<User> userObject = userRepository.findById(userId);
+        User user = userObject.get();
+        String json = "";
+        if(user.getSzRole().equals("D")){
+        	MdpDonor mdpDonor = donorService.getDonorFromUser(user);
+        	MdpDonorDetails mdpDonorDetails = new MdpDonorDetails();
+        	mdpDonorDetails.setAddressLine1(mdpDonor.getSzAddressLine1());
+        	mdpDonorDetails.setAddressLine2(mdpDonor.getSzAddressLine2());
+        	mdpDonorDetails.setCity(mdpDonor.getSzCity());
+        	mdpDonorDetails.setContactNo1(mdpDonor.getSzPhone());
+        	mdpDonorDetails.setCountry(mdpDonor.getSzCountry());
+        	mdpDonorDetails.setDonorName(mdpDonor.getSzDonorName());
+        	mdpDonorDetails.setEmail(mdpDonor.getSzEmail());
+        	mdpDonorDetails.setMobile(mdpDonor.getSzMobile());
+        	mdpDonorDetails.setPincode(mdpDonor.getSzPostalCode());
+        	mdpDonorDetails.setState(mdpDonor.getSzState());
+        	json = new Gson().toJson(mdpDonorDetails);
+        } else  if(user.getSzRole().equals("N")){
+        	MdpNgo mdpNgo = ngoService.getNgoFromUser(user);
+        	MdpNGoDetails mdpNGoDetails = new MdpNGoDetails();
+        	mdpNGoDetails.setAddressLine1(mdpNgo.getSzAddressLine1());
+        	mdpNGoDetails.setAddressLine2(mdpNgo.getSzAddressAine2());
+        	mdpNGoDetails.setBankAccountNo(mdpNgo.getSzBankAccountNo());
+        	mdpNGoDetails.setCity(mdpNgo.getSzCity());
+        	mdpNGoDetails.setContactNo1(mdpNgo.getSzPhone1());
+        	mdpNGoDetails.setContactNo2(mdpNgo.getSzPhone2());
+        	mdpNGoDetails.setCountry(mdpNgo.getSzCountry());
+        	mdpNGoDetails.setEmail(mdpNgo.getSzEmail());
+        	mdpNGoDetails.setFundTransferRef(mdpNgo.getSzFundTransferPref());
+        	mdpNGoDetails.setId(mdpNgo.getiNgoId());
+        	mdpNGoDetails.setIfsc(mdpNgo.getSzIfscCode());
+        	mdpNGoDetails.setMobile(mdpNgo.getSzMobile());
+        	mdpNGoDetails.setNgoDesc(mdpNgo.getSzNgoDesc());
+        	mdpNGoDetails.setNgoName(mdpNgo.getSzNgoName());
+        	mdpNGoDetails.setPincode(mdpNgo.getSzPostalCode());
+        	mdpNGoDetails.setPrimaryCategory(mdpNgo.getSzCategoryPrimary());
+        	mdpNGoDetails.setRedistrationDate(mdpNgo.getDtRegistration());
+        	mdpNGoDetails.setRegistrationId(mdpNgo.getSzRegistrationId());
+        	mdpNGoDetails.setSecondaryCategory(mdpNgo.getSzCategorySecondary());
+        	mdpNGoDetails.setState(mdpNgo.getSzState());
+        	mdpNGoDetails.setVeriifiedBy(mdpNgo.getSzVerifiedBy());
+        	mdpNGoDetails.setWebsite(mdpNgo.getSzWebsite());
+        	json = new Gson().toJson(mdpNGoDetails);
+        }
+        userDetails = new Gson().fromJson(json, Map.class);
+    	return userDetails;   
+    }
 
 }

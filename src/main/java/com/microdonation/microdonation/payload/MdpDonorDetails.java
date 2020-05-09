@@ -15,240 +15,140 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MdpDonorDetails {
 
-    private User user;
+	private User user;
 
-    @NotNull
-    @NotBlank
-    @Size(min = 4, max = 40)
-    private String donorName;
+	private Long userid;
 
-    @NaturalId
-    @NotBlank
-    @Size(max = 40)
-    @Email
-    private String email;
+	@NotNull
+	@NotBlank
+	@Size(min = 4, max = 40)
+	private String donorName;
 
-    private String registrationId;
+	@NaturalId
+	@NotBlank
+	@Size(max = 40)
+	@Email
+	private String email;
 
-    private Calendar redistrationDate;
+	private String addressLine1;
 
-    private String addressLine1;
+	private String addressLine2;
 
-    private String addressLine2;
+	private String city;
 
-    private String city;
+	private String state;
 
-    private String state;
+	private String country;
 
-    private String country;
+	private String pincode;
 
-    private String pincode;
+	private String contactNo1;
 
-    private String contactNo1;
+	private String mobile;
 
-    private String contactNo2;
+	private boolean status;
 
-    private String mobile;
+	public User getUser() {
+		return user;
+	}
 
-    private String ngoDesc;
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    private String primaryCategory;
+	public Long getUserid() {
+		return userid;
+	}
 
-    private String secondaryCategory;
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
 
-    private String website;
+	public String getDonorName() {
+		return donorName;
+	}
 
-    private String ifsc;
+	public void setDonorName(String donorName) {
+		this.donorName = donorName;
+	}
 
-    private String bankAccountNo;
+	public String getEmail() {
+		return email;
+	}
 
-    private String fundTransferRef;
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    private boolean locked;
+	public String getAddressLine1() {
+		return addressLine1;
+	}
 
-    private boolean status;
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public String getAddressLine2() {
+		return addressLine2;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
 
-    public String getDonorName() {
-        return donorName;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setDonorName(String donorName) {
-        this.donorName = donorName;
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getState() {
+		return state;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-    public String getRegistrationId() {
-        return registrationId;
-    }
+	public String getCountry() {
+		return country;
+	}
 
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
-    }
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public Calendar getRedistrationDate() {
-        return redistrationDate;
-    }
+	public String getPincode() {
+		return pincode;
+	}
 
-    public void setRedistrationDate(Calendar redistrationDate) {
-        this.redistrationDate = redistrationDate;
-    }
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
 
-    public String getAddressLine1() {
-        return addressLine1;
-    }
+	public String getContactNo1() {
+		return contactNo1;
+	}
 
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
-    }
+	public void setContactNo1(String contactNo1) {
+		this.contactNo1 = contactNo1;
+	}
 
-    public String getAddressLine2() {
-        return addressLine2;
-    }
+	public String getMobile() {
+		return mobile;
+	}
 
-    public void setAddressLine2(String addressLine2) {
-        this.addressLine2 = addressLine2;
-    }
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public boolean isStatus() {
+		return status;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getPincode() {
-        return pincode;
-    }
-
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
-    }
-
-    public String getContactNo1() {
-        return contactNo1;
-    }
-
-    public void setContactNo1(String contactNo1) {
-        this.contactNo1 = contactNo1;
-    }
-
-    public String getContactNo2() {
-        return contactNo2;
-    }
-
-    public void setContactNo2(String contactNo2) {
-        this.contactNo2 = contactNo2;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getNgoDesc() {
-        return ngoDesc;
-    }
-
-    public void setNgoDesc(String ngoDesc) {
-        this.ngoDesc = ngoDesc;
-    }
-
-    public String getPrimaryCategory() {
-        return primaryCategory;
-    }
-
-    public void setPrimaryCategory(String primaryCategory) {
-        this.primaryCategory = primaryCategory;
-    }
-
-    public String getSecondaryCategory() {
-        return secondaryCategory;
-    }
-
-    public void setSecondaryCategory(String secondaryCategory) {
-        this.secondaryCategory = secondaryCategory;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public String getIfsc() {
-        return ifsc;
-    }
-
-    public void setIfsc(String ifsc) {
-        this.ifsc = ifsc;
-    }
-
-    public String getBankAccountNo() {
-        return bankAccountNo;
-    }
-
-    public void setBankAccountNo(String bankAccountNo) {
-        this.bankAccountNo = bankAccountNo;
-    }
-
-    public String getFundTransferRef() {
-        return fundTransferRef;
-    }
-
-    public void setFundTransferRef(String fundTransferRef) {
-        this.fundTransferRef = fundTransferRef;
-    }
-
-    public boolean isLocked() {
-        return locked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 }

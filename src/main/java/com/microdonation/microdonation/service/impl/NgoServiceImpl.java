@@ -2,7 +2,9 @@ package com.microdonation.microdonation.service.impl;
 
 import com.microdonation.microdonation.exception.AppException;
 import com.microdonation.microdonation.payload.MdpNGoDetails;
+import com.microdonation.microdonation.model.MdpDonor;
 import com.microdonation.microdonation.model.MdpNgo;
+import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.repository.NgoRepository;
 import com.microdonation.microdonation.service.NgoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,12 @@ public class NgoServiceImpl implements NgoService {
         {
             throw  new AppException("Ngo Data Save Failed");
         }
+    }
+    
+    public  MdpNgo getNgoFromUser(User user)
+    {
+        MdpNgo mdpNgo = ngoRepository.findByUser(user);
+        return mdpNgo;
     }
 
 }

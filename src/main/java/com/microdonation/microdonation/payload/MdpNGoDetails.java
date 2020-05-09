@@ -17,7 +17,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MdpNGoDetails {
 
-    private User user;
+	private User user;
+	
+   	private long userid;
 
     private long id;
 
@@ -75,12 +77,20 @@ public class MdpNGoDetails {
     public String veriifiedBy;
 
     public User getUser() {
-        return user;
-    }
+		return user;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+    public long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(long userid) {
+		this.userid = userid;
+	}
 
     public String getNgoName() {
         return ngoName;

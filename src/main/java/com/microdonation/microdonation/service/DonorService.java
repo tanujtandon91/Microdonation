@@ -1,6 +1,7 @@
 package com.microdonation.microdonation.service;
 
 
+import com.microdonation.microdonation.model.MdpDonor;
 import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.payload.*;
 
@@ -19,4 +20,8 @@ public interface DonorService {
     public boolean saveDonorReference(DonorReferenceRequest donorReferenceRequest);
 
     public DonorReferenceResponse getMyReferences(User user);
+    
+    public void updateDonorDetails(MdpDonorDetails mdpDonorDetails);
+    
+    public  MdpDonor getDonorFromUser(User user);
 }

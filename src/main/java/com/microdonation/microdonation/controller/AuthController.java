@@ -5,8 +5,12 @@ import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.payload.*;
 import com.microdonation.microdonation.repository.UserRepository;
 import com.microdonation.microdonation.security.JwtTokenProvider;
+import com.microdonation.microdonation.service.DonorService;
+import com.microdonation.microdonation.service.NgoService;
 import com.microdonation.microdonation.service.UserActivationValidateService;
 import com.microdonation.microdonation.service.UserService;
+import com.microdonation.microdonation.service.impl.NgoServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -35,7 +39,6 @@ public class AuthController {
     @Autowired
     UserRepository userRepository;
 
-
     @Autowired
     JwtTokenProvider tokenProvider;
 
@@ -45,6 +48,11 @@ public class AuthController {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
+    @Autowired
+    DonorService donorService;
+    
+    @Autowired
+    NgoService ngoService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -113,23 +121,33 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(value = "/userprofile/{userId}/{role}", method = {RequestMethod.GET})
-    public ResponseEntity<?> getUserProfile(@PathVariable(value = "userId") Long userId,@PathVariable(value = "role")String role){
-        if(role == "D")
-        {
-
-        }
-        else if(role == "N")
-        {
-
-        }
-
+    @RequestMapping(value = "/userprofile/{userId}", method = {RequestMethod.GET})
+    public ResponseEntity<?> getUserProfile(@PathVariable(value = "userId") Long userId){
+    	try {
+    		//UserService.getUserDetails(userId);
+    	} catch(Exception e) {
+    		
+    	}
         return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
 
-    @RequestMapping(value = "/updateProfile", method = {RequestMethod.POST})
+    @RequestMapping(value = "/updateProfileDonor", method = {RequestMethod.POST})
+    public ResponseEntity<?> updateUserProfile(@Valid @RequestBody MdpDonorDetails mdpDonorDetails){
+    	try {
+    		donorService.updateDonorDetails(mdpDonorDetails);
+    	} catch(Exception e) {
+    		
+    	}
+        return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
+    }
+    
+    @RequestMapping(value = "/updateProfileNgo", method = {RequestMethod.POST})
     public ResponseEntity<?> updateUserProfile(@Valid @RequestBody MdpNGoDetails mdpNGoDetails){
-
+    	try {
+    		ngoService.updateNgoDetails(mdpNGoDetails);
+    	} catch(Exception e) {
+    		
+    	}
         return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
 

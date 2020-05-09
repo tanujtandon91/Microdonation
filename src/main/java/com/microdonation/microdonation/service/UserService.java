@@ -25,4 +25,6 @@ public interface UserService {
     public User createOrUpdateUser(SignUpRequest signUpRequest, HttpServletRequest request);
 
     public Map<String,Object> login(LoginRequest loginRequest,Authentication authentication);
+    
+    public Map<String,Object> getUserDetails(Long userId);
 }

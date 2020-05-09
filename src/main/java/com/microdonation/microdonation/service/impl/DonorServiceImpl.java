@@ -272,7 +272,30 @@ public class DonorServiceImpl implements DonorService {
         return tmdpDonorRef;
     }
 
-
-
-
-}
+    public void updateDonorDetails(MdpDonorDetails mdpDonorDetails)
+    {
+    	 Optional<User> userObj = userRepository.findById(mdpDonorDetails.getUserid());
+         try{
+            User user = userObj.get();
+            MdpDonor mdpDonorUser = getDonorFromUser(user);
+            Optional<MdpDonor> mdpDonorObject = donorRepository.findById(mdpDonorUser.getiDonorId());
+            MdpDonor mdpDonor = mdpDonorObject.get();
+            mdpDonor.setUser(user);
+            mdpDonor.setSzDonorName(mdpDonorDetails.getDonorName());
+            mdpDonor.setSzEmail(mdpDonorDetails.getEmail());
+            mdpDonor.setSzMobile(mdpDonorDetails.getMobile());
+            mdpDonor.setSzAddressLine1(mdpDonorDetails.getAddressLine1());
+            mdpDonor.setSzAddressLine2(mdpDonorDetails.getAddressLine2());
+            mdpDonor.setSzPhone(mdpDonorDetails.getContactNo1());
+            mdpDonor.setSzCity(mdpDonorDetails.getCity());
+            mdpDonor.setSzState(mdpDonorDetails.getState());
+            mdpDonor.setSzCountry(mdpDonorDetails.getCountry());
+            mdpDonor.setSzPostalCode(mdpDonorDetails.getPincode());
+            mdpDonor.setcDonorStatus(mdpDonorDetails.isStatus());
+            donorRepository.saveAndFlush(mdpDonor);
+        }catch (Exception e)
+        {
+            throw  new AppException("Ngo Data Save Failed");
+        }
+    }
+    }
