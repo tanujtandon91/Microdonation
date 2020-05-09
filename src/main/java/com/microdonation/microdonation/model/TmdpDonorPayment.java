@@ -1,20 +1,14 @@
 package com.microdonation.microdonation.model;
 
-import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 @Table(name = "T_MDP_DONOR_PAYMENT")
-public class TmdpDonorPayment implements Serializable {
+public class TmdpDonorPayment {
 
     //I_DONOR_ID	INTEGER	10
+
     @OneToOne(targetEntity = MdpDonor.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "iDonorId" )
     private MdpDonor iDonorId;

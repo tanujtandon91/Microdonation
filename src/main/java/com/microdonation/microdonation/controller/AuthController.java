@@ -5,6 +5,7 @@ import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.payload.*;
 import com.microdonation.microdonation.repository.UserRepository;
 import com.microdonation.microdonation.security.JwtTokenProvider;
+import com.microdonation.microdonation.service.UserActivationValidateService;
 import com.microdonation.microdonation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -43,6 +45,7 @@ public class AuthController {
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -52,11 +55,13 @@ public class AuthController {
                         loginRequest.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        try {
+            Map<String, Object> loginResponse = userService.login(loginRequest, authentication);
+            return ResponseEntity.ok(new ApiResponse(true, loginResponse));
+        } catch (Exception e) {
+            return ResponseEntity.ok(new ApiResponse(false, e.getMessage()));
+        }
     }
 
     @PostMapping("/signup")

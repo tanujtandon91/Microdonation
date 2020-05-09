@@ -4,9 +4,7 @@ import com.microdonation.microdonation.event.OnRegistrationCompleteEvent;
 import com.microdonation.microdonation.exception.AppException;
 import com.microdonation.microdonation.model.User;
 import com.microdonation.microdonation.model.VerificationToken;
-import com.microdonation.microdonation.payload.MdpDonorDetails;
-import com.microdonation.microdonation.payload.MdpNGoDetails;
-import com.microdonation.microdonation.payload.SignUpRequest;
+import com.microdonation.microdonation.payload.*;
 import com.microdonation.microdonation.repository.DonorRepository;
 import com.microdonation.microdonation.repository.NgoRepository;
 import com.microdonation.microdonation.repository.UserRepository;
@@ -14,6 +12,7 @@ import com.microdonation.microdonation.repository.VerificationTokenRepository;
 import com.microdonation.microdonation.security.JwtTokenProvider;
 import com.microdonation.microdonation.service.DonorService;
 import com.microdonation.microdonation.service.NgoService;
+import com.microdonation.microdonation.service.UserActivationValidateService;
 import com.microdonation.microdonation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -36,10 +35,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -68,7 +64,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     DonorService donorService;
 
-
+    @Autowired
+    UserActivationValidateService validatorService;
 
     public void sendUserActivationEmail(OnRegistrationCompleteEvent event,User user)
     {
@@ -191,6 +188,30 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    public Map<String,Object> login(LoginRequest loginRequest, Authentication authentication)
+    {
+        String jwt = tokenProvider.generateToken(authentication);
+
+
+
+        Optional<User> userObject = userRepository.findBySzUsernameOrSzEmail(loginRequest.getUsernameOrEmail(),loginRequest.getUsernameOrEmail());
+        User user = userObject.get();
+        validatorService.validateUser(user);
+        createVerificationToken(user,jwt);
+        Map<String,Object> loginResponse = new HashMap<>();
+        LoginResponse resp = new LoginResponse();
+        resp.setEmail(user.getSzEmail());
+        resp.setUserId(user.getId());
+        resp.setMobile(String.valueOf(user.getSzMobile()));
+        resp.setRole(user.getSzRole());
+        resp.setLockedUser(user.iscUserLocked());
+        resp.setUserStatus(user.iscUserStatus());
+        resp.setUserName(user.getSzUsername());
+        resp.setName(user.getSzName());
+        loginResponse.put("user",resp);
+        loginResponse.put("token",jwt);
+        return loginResponse;
+    }
 
 
 

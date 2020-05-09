@@ -10,7 +10,14 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 @Entity
-@Table(name = "T_MDP_DONOR_REF")
+@Table(name = "T_MDP_DONOR_REF", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+                "szMobile"
+        }),
+        @UniqueConstraint(columnNames = {
+                "szEmail"
+        })
+})
 public class TmdpDonorRef implements Serializable{
 
 

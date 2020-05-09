@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "T_MDP_MY_NGO")
@@ -20,9 +21,9 @@ public class TmdpMyNgo {
     private float fRecurPmtAllocPer;
 
     //  DT_CREATED	DATE
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     //@Column(columnDefinition="COMMENT 'Date of creation'")
-    private Calendar dtCreated;
+    private Date dtCreated;
 
     public DonorNGoMapping getDonorNGoMapping() {
         return donorNGoMapping;
@@ -40,11 +41,11 @@ public class TmdpMyNgo {
         this.fRecurPmtAllocPer = fRecurPmtAllocPer;
     }
 
-    public Calendar getDtCreated() {
+    public Date getDtCreated() {
         return dtCreated;
     }
 
-    public void setDtCreated(Calendar dtCreated) {
+    public void setDtCreated(Date dtCreated) {
         this.dtCreated = dtCreated;
     }
 

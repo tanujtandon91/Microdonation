@@ -16,15 +16,15 @@ public class UserActivationValidateServiceImpl implements UserActivationValidate
 
     public void validateUser(User user)
     {
-       try{
            User users  = userRepository.findByIdAndCUserStatus(user.getId());
            if(null==users)
            {
                throw new AppException("User is not Active, Cannot Process Request");
            }
-       }catch (Exception e)
-       {
-           throw new AppException("User is not Active, Cannot Process Request");
-       }
+           if(users.iscUserLocked())
+           {
+               throw new AppException("User Id is locked ! Contact Administrator");
+           }
+
     }
 }
