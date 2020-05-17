@@ -11,6 +11,8 @@ import com.microdonation.microdonation.service.UserActivationValidateService;
 import com.microdonation.microdonation.service.UserService;
 import com.microdonation.microdonation.service.impl.NgoServiceImpl;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
+@Api(value = "Authorization")
 public class AuthController {
 
     @Autowired
@@ -55,6 +58,7 @@ public class AuthController {
     NgoService ngoService;
 
     @PostMapping("/signin")
+    @ApiOperation("User Login Authentication")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
