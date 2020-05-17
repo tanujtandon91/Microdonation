@@ -24,4 +24,6 @@ public interface DonorService {
     public void updateDonorDetails(MdpDonorDetails mdpDonorDetails);
     
     public  MdpDonor getDonorFromUser(User user);
+
+    public boolean saveDonorPayment(DonorNGoPayment donorNGoPayment);
 }

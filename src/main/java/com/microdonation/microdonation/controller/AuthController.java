@@ -124,32 +124,31 @@ public class AuthController {
     @RequestMapping(value = "/userprofile/{userId}", method = {RequestMethod.GET})
     public ResponseEntity<?> getUserProfile(@PathVariable(value = "userId") Long userId){
     	try {
-    		//UserService.getUserDetails(userId);
+           Map<String,Object> userDetails =  userService.getUserDetails(userId);
+            return ResponseEntity.ok().body(new ApiResponse(true, userDetails));
     	} catch(Exception e) {
-    		
+            return ResponseEntity.ok().body(new ApiResponse(true, "Could Not fetch User Details"));
     	}
-        return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
+
     }
 
     @RequestMapping(value = "/updateProfileDonor", method = {RequestMethod.POST})
     public ResponseEntity<?> updateUserProfile(@Valid @RequestBody MdpDonorDetails mdpDonorDetails){
     	try {
     		donorService.updateDonorDetails(mdpDonorDetails);
+            return ResponseEntity.ok().body(new ApiResponse(true, "User Profile Updated successfully"));
     	} catch(Exception e) {
-    		
+            return ResponseEntity.ok().body(new ApiResponse(false, e.getMessage()));
     	}
-        return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
     
     @RequestMapping(value = "/updateProfileNgo", method = {RequestMethod.POST})
     public ResponseEntity<?> updateUserProfile(@Valid @RequestBody MdpNGoDetails mdpNGoDetails){
     	try {
     		ngoService.updateNgoDetails(mdpNGoDetails);
+            return ResponseEntity.ok().body(new ApiResponse(true, "User Profile Updated successfully"));
     	} catch(Exception e) {
-    		
+            return ResponseEntity.ok().body(new ApiResponse(false, e.getMessage()));
     	}
-        return ResponseEntity.ok().body(new ApiResponse(true, "User registered successfully"));
     }
-
-
 }

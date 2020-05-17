@@ -18,8 +18,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class MdpNGoDetails {
 
 	private User user;
-	
-   	private long userid;
+
+   	private long userId;
 
     private long id;
 
@@ -33,10 +33,11 @@ public class MdpNGoDetails {
     @Size(max = 40)
     @Email
     private String email;
-
+    @NotNull
+    @NotBlank
     private String registrationId;
 
-    private Calendar redistrationDate;
+    private String redistrationDate;
 
     private String addressLine1;
 
@@ -83,13 +84,13 @@ public class MdpNGoDetails {
 	public void setUser(User user) {
 		this.user = user;
 	}
-    
-    public long getUserid() {
-		return userid;
+
+    public long getUserId() {
+		return userId;
 	}
 
-	public void setUserid(long userid) {
-		this.userid = userid;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
     public String getNgoName() {
@@ -116,11 +117,11 @@ public class MdpNGoDetails {
         this.registrationId = registrationId;
     }
 
-    public Calendar getRedistrationDate() {
+    public String getRedistrationDate() {
         return redistrationDate;
     }
 
-    public void setRedistrationDate(Calendar redistrationDate) {
+    public void setRedistrationDate(String redistrationDate) {
         this.redistrationDate = redistrationDate;
     }
 

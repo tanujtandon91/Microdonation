@@ -15,7 +15,7 @@ public class TmdpDonorPayment {
 
     //I_PAYMENT_ID	INTEGER	10
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iPaymnetId;
 
     //DT_PAYMENT	DATE

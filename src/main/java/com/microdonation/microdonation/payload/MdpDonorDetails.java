@@ -17,7 +17,8 @@ public class MdpDonorDetails {
 
 	private User user;
 
-	private Long userid;
+	@NotNull
+	private Long userId;
 
 	@NotNull
 	@NotBlank
@@ -30,20 +31,22 @@ public class MdpDonorDetails {
 	@Email
 	private String email;
 
+	@NotNull
 	private String addressLine1;
 
 	private String addressLine2;
-
+	@NotNull
 	private String city;
-
+	@NotNull
 	private String state;
-
+	@NotNull
 	private String country;
 
+	@NotNull
 	private String pincode;
 
 	private String contactNo1;
-
+	@NotNull
 	private String mobile;
 
 	private boolean status;
@@ -56,12 +59,12 @@ public class MdpDonorDetails {
 		this.user = user;
 	}
 
-	public Long getUserid() {
-		return userid;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getDonorName() {

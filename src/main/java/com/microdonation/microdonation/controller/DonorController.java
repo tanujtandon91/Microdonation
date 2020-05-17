@@ -96,4 +96,17 @@ public class DonorController {
             return ResponseEntity.ok().body(new ApiResponse(false, e.getMessage()));
         }
     }
+
+    @PostMapping("/ngoPayment")
+    public ResponseEntity<?> donorPayment(@Valid @RequestBody DonorNGoPayment donorNGoPayment, HttpServletRequest request) {
+        try {
+            User user = new User();
+            user.setId(donorNGoPayment.getUserId());
+            validatorService.validateUser(user);
+            donorService.saveDonorPayment(donorNGoPayment);
+            return ResponseEntity.ok().body(new ApiResponse(true, "Payment Updated Successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.ok().body(new ApiResponse(false, e.getMessage()));
+        }
+    }
 }

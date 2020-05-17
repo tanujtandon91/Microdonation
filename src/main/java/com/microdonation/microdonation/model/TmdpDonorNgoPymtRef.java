@@ -5,18 +5,22 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+
+@Entity
+@Table(name = "T_MDP_DONOR_NGO_PAYMENT")
 public class TmdpDonorNgoPymtRef {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long iPaymnetId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long iNgoPaymentId;
 
-    @OneToMany(targetEntity = TmdpDonorPayment.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = TmdpDonorPayment.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "iPaymentId" )
     private TmdpDonorPayment iDonorPaymentId;
 
-
-    private Long iDonorId;
+    @OneToOne(targetEntity = MdpDonor.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "iDonorId" )
+    private MdpDonor iDonorId;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtPayment;
@@ -61,15 +65,9 @@ public class TmdpDonorNgoPymtRef {
     private float fAmount;
 
     //I_NGO_1_payment_ref	INTEGER	10
-    private Long iNgoIdNoPaymentRef;
+    private Long iNgoIdPaymentRef;
 
-    public Long getiPaymnetId() {
-        return iPaymnetId;
-    }
 
-    public void setiPaymnetId(Long iPaymnetId) {
-        this.iPaymnetId = iPaymnetId;
-    }
 
     public TmdpDonorPayment getiDonorPaymentId() {
         return iDonorPaymentId;
@@ -79,11 +77,11 @@ public class TmdpDonorNgoPymtRef {
         this.iDonorPaymentId = iDonorPaymentId;
     }
 
-    public Long getiDonorId() {
+    public MdpDonor getiDonorId() {
         return iDonorId;
     }
 
-    public void setiDonorId(Long iDonorId) {
+    public void setiDonorId(MdpDonor iDonorId) {
         this.iDonorId = iDonorId;
     }
 
@@ -175,11 +173,15 @@ public class TmdpDonorNgoPymtRef {
         this.fAmount = fAmount;
     }
 
-    public Long getiNgoIdNoPaymentRef() {
-        return iNgoIdNoPaymentRef;
+    public Long getiNgoIdPaymentRef() {
+        return iNgoIdPaymentRef;
     }
 
-    public void setiNgoIdNoPaymentRef(Long iNgoIdNoPaymentRef) {
-        this.iNgoIdNoPaymentRef = iNgoIdNoPaymentRef;
+    public void setiNgoIdPaymentRef(Long iNgoIdPaymentRef) {
+        this.iNgoIdPaymentRef = iNgoIdPaymentRef;
     }
+
+    public Long getiNgoPaymentId() { return iNgoPaymentId; }
+
+    public void setiNgoPaymentId(Long iNgoPaymentId) { this.iNgoPaymentId = iNgoPaymentId; }
 }
