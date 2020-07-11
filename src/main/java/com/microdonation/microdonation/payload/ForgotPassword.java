@@ -7,24 +7,33 @@ import javax.validation.constraints.NotNull;
 public class ForgotPassword {
 
 	@NotBlank
-	private String emailIdOrMobileNo;
+	private String username;
 	
 	@NotBlank	
 	private String sendOTP;
-	
 
-	public String getEmailIdOrMobileNo() {
-		return emailIdOrMobileNo;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setEmailIdOrMobileNo(String emailIdOrMobileNo) {
-		this.emailIdOrMobileNo = emailIdOrMobileNo;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
 	public String getSendOTP() {
 		return sendOTP;
 	}
+
 	public void setSendOTP(String sendOTP) {
 		this.sendOTP = sendOTP;
-	}	
+	}
 
-
+	@Override
+	public String toString() {
+		return "ForgotPassword{" +
+				"username='" + username + '\'' +
+				", sendOTP='" + sendOTP + '\'' +
+				'}';
+	}
 }

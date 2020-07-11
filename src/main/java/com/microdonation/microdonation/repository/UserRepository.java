@@ -15,8 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findBySzUsernameOrSzEmail(String username, String email);
 
-    List<User> findByIdIn(List<Long> userIds);
-
     Optional<User> findBySzUsername(String username);
 
     Boolean existsBySzUsername(String username);
@@ -28,11 +26,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsBySzMobile(long mobileNo);
 
     @Query(value = "Select * from m_mdp_users where id=:id and c_user_status = 1",nativeQuery = true)
-    public User  findByIdAndCUserStatus(@Param("id") Long id);
+    User  findByIdAndCUserStatus(@Param("id") Long id);
 
-    //@Qurery(value="Select * from m_mdp_users where sz_email=:email",nativeQuery = true)
-	//boolean existByEmailOrMObile(@Param ("emailIdOrMobileNo")String emailIdOrMobileNo);
-   
-    //public User findByEmailIdOrPhoneNo(@Param("email")String email);
+    Optional<User> findBySzUsernameAndSzResetOtp(String username, String resetOtp);
 
 }

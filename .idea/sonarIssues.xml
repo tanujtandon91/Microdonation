@@ -428,6 +428,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/microdonation/microdonation/payload/ForgotPassword.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/microdonation/microdonation/payload/LoginResponse.java">
           <value>
             <set />
@@ -453,7 +458,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/microdonation/microdonation/payload/ResetPassword.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/com/microdonation/microdonation/payload/SignUpRequest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/microdonation/microdonation/payload/VerifyOTP.java">
           <value>
             <set />
           </value>

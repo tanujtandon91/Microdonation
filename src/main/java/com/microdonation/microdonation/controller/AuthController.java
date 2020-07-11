@@ -57,29 +57,6 @@ public class AuthController {
 	@Autowired
 	NgoService ngoService;
 
-	@PostMapping("/forgotPassword")
-	public ResponseEntity<?> forgetPassword(@Valid @RequestBody ForgotPassword forgotPassword) {
-		try {
-			System.out.println(forgotPassword.getEmailIdOrMobileNo() + " " + forgotPassword.getSendOTP());
-			userService.findUserByEmialOrMobile(forgotPassword);
-			return ResponseEntity.ok().body(new ApiResponse(true, "Sent Otp To the User !!!"));
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
-		}
-	}
-
-	@PostMapping("/resetPassword")
-	public ResponseEntity<?>  resetPassword(@Valid @RequestBody ResetPassword resetPassword) {
-		try {
-			userService.findUserByresetOtp(resetPassword.getPassword(), resetPassword.getResetOtp());
-			return ResponseEntity.ok().body(new ApiResponse(true, "Password Changed Successfully !!!"));
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
-		}
-	}
-
 	@PostMapping("/signin")
 	@ApiOperation("User Login Authentication")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -174,4 +151,54 @@ public class AuthController {
 			return ResponseEntity.ok().body(new ApiResponse(false, e.getMessage()));
 		}
 	}
-}
+	@PostMapping("/forgotPassword")
+	@ApiOperation("Forgot Password Request.")
+	public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPassword forgotPassword) {
+		try {
+			userService.forgotPassword(forgotPassword);
+			if (forgotPassword.getSendOTP().equalsIgnoreCase("E")) {
+				return ResponseEntity.ok().body(new ApiResponse(true, "OTP sent to Registered Email Address"));
+			} else {
+				return ResponseEntity.ok().body(new ApiResponse(true, "OTP sent to Registered Mobile Number "));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
+	@PostMapping("/verifyOTP")
+	@ApiOperation("Verify OTP.")
+	public ResponseEntity<?> verifyOTP(@Valid @RequestBody VerifyOTP verifyOTP) {
+		try {
+			userService.verifyOTP(verifyOTP);
+			return ResponseEntity.ok().body(new ApiResponse(true, "OTP Verified Successfully "));
+		} catch (Exception e) {
+			return new ResponseEntity(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
+	@PostMapping("/changePassword")
+	@ApiOperation("Change User Password")
+	public ResponseEntity<?> changePassword(@Valid @RequestBody ResetPassword resetPassword) {
+		try {
+			userService.changePassword(resetPassword);
+			return ResponseEntity.ok().body(new ApiResponse(true,
+					"Password Changed Successfully for " + resetPassword.getUsername()));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping("/confirmEmail/{emailID}")
+	@ApiOperation("Send Activation Email to User's Email Address.")
+	public ResponseEntity<?> verifyEmail(@PathVariable(value = "emailID") String emailID) {
+		try {
+			userService.sendActivationEmail(emailID);
+			return ResponseEntity.ok().body(new ApiResponse(true, "Verification link sent to "+emailID+". Kindly check the spam folder in case not received in inbox."));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
+	}

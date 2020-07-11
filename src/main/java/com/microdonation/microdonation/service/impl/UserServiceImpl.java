@@ -32,6 +32,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.mail.Message;
 import javax.mail.Session;
@@ -294,46 +295,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return userDetails;
 	}
-
-	@Override
-	public void findUserByEmialOrMobile(@Valid ForgotPassword forgotPassword) {
-		try {
-			Optional<User> userByEmail = userRepository.findBySzEmail(forgotPassword.getEmailIdOrMobileNo());
-			if (userByEmail.isPresent()) {
-				System.out.println("User is Exist");
-				if (forgotPassword.getSendOTP().equalsIgnoreCase("E")) {
-					System.out.println("Sending Otp to Email Id");
-					String randomOtp = getRandomNumberString();
-					System.out.println("Generated Random Otp is " + randomOtp);
-					User user = userByEmail.get();
-					user.setSzResetOtp(randomOtp);
-					LocalDateTime dtOtpExpireTime = LocalDateTime.now();
-					user.setDtOtpExpireDateTime(dtOtpExpireTime);
-                   
-					userRepository.saveAndFlush(user);
-					System.out.println("Set generated Otp and Otp Expire time in DB");
-					//String toEmail = user.getSzEmail();
-                   // System.out.println("Otp will be sent to this mail id :"+toEmail);
-					String fromMail = "mihir.microdonation@gmail.com";
-					String toEmail = "yogeshtawale999@gmail.com";
-					try {
-						sendOtpThroughEmail(randomOtp, toEmail);
-						//sendOtpEmail(toEmail, randomOtp);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} else {
-					System.out.println("By Default Sending Otp to mobile No");
-				}
-			} else {
-				System.out.println("Could't find user by:" + forgotPassword.getEmailIdOrMobileNo());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Exception is " + e);
-		}
-	}
-
 	/**
 	 * This method will return the 6 digit random number.
 	 * 
@@ -412,7 +373,7 @@ public class UserServiceImpl implements UserService {
 
 	public boolean isOtpExpire(LocalDateTime localDateTime) {
 		boolean otpStatus = false;
-		LocalDateTime date1 = LocalDateTime.now().minusSeconds(60);
+		LocalDateTime date1 = LocalDateTime.now().minusSeconds(90);
 		// compareTo() method
 		int diff = date1.compareTo(localDateTime);
 		if (diff > 0) {
@@ -426,5 +387,105 @@ public class UserServiceImpl implements UserService {
 			otpStatus = false;
 		}
 		return otpStatus;
+	}
+
+	@Override
+	public void forgotPassword(@Valid ForgotPassword forgotPassword) {
+		try {
+			Optional<User> userByEmail = userRepository.findBySzUsername(forgotPassword.getUsername());
+			if (userByEmail.isPresent()) {
+				if (forgotPassword.getSendOTP().equalsIgnoreCase("E")) {
+					String randomOtp = getRandomNumberString();
+					User user = userByEmail.get();
+					user.setSzResetOtp(randomOtp);
+					LocalDateTime dtOtpExpireTime = LocalDateTime.now();
+					user.setDtOtpExpireDateTime(dtOtpExpireTime);
+					userRepository.saveAndFlush(user);
+					String toEmail = user.getSzEmail();
+					try {
+						sendOtpThroughEmail(randomOtp, toEmail);
+					} catch (Exception e) {
+						throw new AppException(e.getMessage());
+					}
+				} else {
+					User user = userByEmail.get();
+					System.out.println("By Default Sending Otp to Mobile Number");
+				}
+			} else {
+				throw new AppException("Could't find user by username :" + forgotPassword.getUsername());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new AppException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void verifyOTP(@Valid VerifyOTP verifyOTP) {
+		try {
+			Optional<User> userOtp = userRepository.findBySzUsernameAndSzResetOtp(verifyOTP.getUsername(),
+					verifyOTP.getOtp());
+			if (userOtp.isPresent()) {
+				User user = userOtp.get();
+				boolean b = isOtpExpire(user.getDtOtpExpireDateTime());
+				if (b) {
+					user.setSzResetOtp(null);
+					userRepository.saveAndFlush(user);
+				} else {
+					throw new AppException("OTP Expired");
+				}
+			}else {
+				throw new AppException("Invalid OTP ");
+			}
+		} catch (Exception e) {
+			throw new AppException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void changePassword(ResetPassword resetPassword) {
+		try {
+			Optional<User> userData = userRepository.findBySzUsername(resetPassword.getUsername());
+			if (userData.isPresent()) {
+				if (resetPassword.getPassword().equals(resetPassword.getConfirmPassword())) {
+					User user = userData.get();
+					user.setSzPassword(passwordEncoder.encode(resetPassword.getPassword()));
+					userRepository.saveAndFlush(user);
+				} else {
+					throw new AppException("Enterd Password and Confirm Password is Mismatch...");
+				}
+			} else {
+				throw new AppException("Could not find user by username:" + resetPassword.getUsername());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new AppException(e.getMessage());
+		}
+	}
+
+	@Override
+	public void sendActivationEmail(String emailID) {
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailID));
+				mimeMessage.setFrom(new InternetAddress("mihir.microdonation@gmail.com"));
+				mimeMessage.setSubject("Micro Donation User Activation !!!");
+				mimeMessage.setText("");
+				MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+				helper.setText("kindly find User Activation Link :", true);
+			}
+		};
+		try {
+			new Thread(() -> {
+				System.out.println("inside SendMail -preparing to send mail");
+				javaMailSender.send(preparator);
+				System.out.println("inside mail sent :");
+			}).start();
+			// mailSender.send(message);
+		} catch (MailException ex) {
+			ex.printStackTrace();
+			throw new AppException(ex.getMessage());
+		}
 	}
 }

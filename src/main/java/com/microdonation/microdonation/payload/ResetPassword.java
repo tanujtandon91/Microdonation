@@ -11,7 +11,7 @@ public class ResetPassword {
 	private String confirmPassword;
 	
 	@NotBlank
-	private String resetOtp;
+	private String username;
 	
 	public String getPassword() {
 		return password;
@@ -29,13 +29,20 @@ public class ResetPassword {
 		this.confirmPassword = confirmPassword;
 	}
 
-	public String getResetOtp() {
-		return resetOtp;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setResetOtp(String resetOtp) {
-		this.resetOtp = resetOtp;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-
+	@Override
+	public String toString() {
+		return "ResetPassword{" +
+				"password='" + password + '\'' +
+				", confirmPassword='" + confirmPassword + '\'' +
+				", username='" + username + '\'' +
+				'}';
+	}
 }
