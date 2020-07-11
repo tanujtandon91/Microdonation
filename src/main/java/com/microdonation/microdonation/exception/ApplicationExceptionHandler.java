@@ -30,72 +30,56 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler({GeneralException.class, ApiException.class})
     public final ResponseEntity<Object> handleGeneralException(Exception ex, WebRequest request) {
         LOG.error(LOG_RESPONSE, ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(DBException.class)
     public final ResponseEntity<Object> handleSQLException(DBException ex, WebRequest request) {
         LOG.error("SQL Exception: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(ValidationException.class)
     public final ResponseEntity<Object> handleValidationException(Exception ex, WebRequest request) {
         LOG.error("Validation Exception: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(ServiceUnavailableException.class)
     public final ResponseEntity<Object> handleServiceUnavailableException(Exception ex, WebRequest request) {
         LOG.error("Service unavailable Exception: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @ExceptionHandler(HeaderException.class)
     public final ResponseEntity<ExceptionModel> headerException(Exception ex, WebRequest request) {
         LOG.error("Headers exception: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(AuthorizationException.class)
     public final ResponseEntity<Object> authException(Exception ex, WebRequest request) {
         LOG.error("Authorization Exception: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(DataNotFoundException.class)
     public final ResponseEntity<Object> dataNotFound(Exception ex, WebRequest request) {
         LOG.error("Data not found Exception: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> exception(Exception ex, WebRequest request) {
         LOG.error("unhandledException: {}", ex.getMessage());
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -111,18 +95,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
             errorbuffer = errorbuffer + fieldError.getDefaultMessage() +",";
         }
         response.put("error", errors);
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(errorbuffer.substring(0,errorbuffer.length()-1))
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.BAD_REQUEST);
     }
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
                                                                          HttpHeaders headers, HttpStatus status, WebRequest request) {
-        ApiResponse responseModel =
-                new ApiResponse().new ResponseBuilder().setSuccess(false).setMessage(ex.getMessage())
-                        .setData(null).build();
+        ApiResponse responseModel = new ApiResponse.ResponseBuilder().setSuccess(false).setMessage(ex.getMessage()).build();
         return new ResponseEntity(responseModel, HttpStatus.METHOD_NOT_ALLOWED);
     }
 }

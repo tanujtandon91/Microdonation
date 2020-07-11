@@ -1,19 +1,20 @@
 package com.microdonation.microdonation.model;
 
-import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 @Table(name = "T_LOOKUP")
 @IdClass(tLookup.class)
 public class tLookup implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 375024524593040916L;
+	@Id
     @NotBlank
     @Size(max = 60)
     private String szLookupCode; //SZ_LOOKUP_CODE
@@ -22,7 +23,7 @@ public class tLookup implements Serializable {
     private String szLookupType; //SZ_LOOKUP_type
 
     @Size(max = 60)
-    private String szLookupValue; //SZ_LOOKUP_VALUE
+    private String szLookupValue; //SZ_LOOKUP_VALUE 
 
     //  DT_CREATED	DATE
     @Temporal(TemporalType.TIMESTAMP)

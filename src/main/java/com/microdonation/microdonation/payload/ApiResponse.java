@@ -13,8 +13,15 @@ public class ApiResponse<T extends Object> implements Serializable {
     private Boolean success;
     private String message;
     private T data;
+    private String error;
 
-    public ApiResponse(Boolean success, String message) {
+    public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
+	}
+	public ApiResponse(Boolean success, String message) {
         this.success = success;
         this.message = message;
     }
@@ -29,7 +36,7 @@ public class ApiResponse<T extends Object> implements Serializable {
     private ApiResponse(ResponseBuilder builder) {
         this.success = builder.success;
         this.message = builder.message;
-        this.data = builder.data;
+        this.error = builder.error;
     }
 
     public Boolean getSuccess() {
@@ -56,27 +63,26 @@ public class ApiResponse<T extends Object> implements Serializable {
         this.data = data;
     }
 
-    public  class ResponseBuilder {
+    public static class ResponseBuilder {
         @JsonProperty(value = "success")
         private boolean success;
         @JsonProperty(value = "message")
         private String message;
-        @JsonProperty(value = "data")
-        private T data;
+        @JsonProperty(value = "error")
+        private String error;
 
-        public ResponseBuilder setSuccess(boolean success) {
+		public ResponseBuilder setError(String error) {
+			this.error = error;
+			return this;
+		}
+
+		public ResponseBuilder setSuccess(boolean success) {
             this.success = success;
             return this;
         }
 
-
         public ResponseBuilder setMessage(String message) {
             this.message = message;
-            return this;
-        }
-
-        public ResponseBuilder setData(T data ) {
-            this.data = data;
             return this;
         }
 
