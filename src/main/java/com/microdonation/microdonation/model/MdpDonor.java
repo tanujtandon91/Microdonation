@@ -64,6 +64,18 @@ public class MdpDonor {
     private float fLastDonationAmount;
 
     private String szPaymentGatewayCode;
+    
+   private int iAge; //added by yogesh
+   
+   private String szOccupation;  //added by yogesh
+  
+   private String szUserIdType; //added by yogesh
+   
+   private String szEmailOtp;  //added by yogesh
+   
+   private String szPhoneOtp;  //added by yogesh
+   
+   private boolean cAgreeToTerms;  //added by yogesh
 
     public Long getiDonorId() {
         return iDonorId;
@@ -224,4 +236,56 @@ public class MdpDonor {
     public void setSzPaymentGatewayCode(String szPaymentGatewayCode) {
         this.szPaymentGatewayCode = szPaymentGatewayCode;
     }
+
+	public int getiAge() {
+		return iAge;
+	}
+
+	public void setiAge(int iAge) {
+		this.iAge = iAge;
+	}
+
+	public String getSzOccupation() {
+		return szOccupation;
+	}
+
+	public void setSzOccupation(String szOccupation) {
+		this.szOccupation = szOccupation;
+	}
+
+	public String getSzUserIdType() {
+		return szUserIdType;
+	}
+
+	public void setSzUserIdType(String szUserIdType) {
+		this.szUserIdType = szUserIdType;
+	}
+
+	public String getSzEmailOtp() {
+		return szEmailOtp;
+	}
+
+	public void setSzEmailOtp(String szEmailOtp) {
+		this.szEmailOtp = szEmailOtp;
+	}
+
+	public String getSzPhoneOtp() {
+		return szPhoneOtp;
+	}
+
+	public void setSzPhoneOtp(String szPhoneOtp) {
+		this.szPhoneOtp = szPhoneOtp;
+	}
+
+	public boolean iscAgreeToTerms() {
+		return cAgreeToTerms;
+	}
+
+	public void setcAgreeToTerms(boolean cAgreeToTerms) {
+		this.cAgreeToTerms = cAgreeToTerms;
+	}
+
+
+    
+    
 }

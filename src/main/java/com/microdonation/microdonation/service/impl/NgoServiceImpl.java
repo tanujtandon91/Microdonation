@@ -35,6 +35,16 @@ public class NgoServiceImpl implements NgoService {
             mdpNgo.setSzMobile(mdpNGoDetails.getMobile());
             mdpNgo.setSzRegistrationId(mdpNGoDetails.getRegistrationId());
             mdpNgo.setDtCreatedDate(new Date());
+            
+            mdpNgo.setSzAddressLine1(mdpNGoDetails.getAddressLine1());
+            mdpNgo.setSzCategoryPrimary(mdpNGoDetails.getPrimaryCategory());
+            
+            mdpNgo.setSzContPerName(mdpNGoDetails.getContactPerson());
+            mdpNgo.setSzUserIdType(mdpNGoDetails.getUserIdType());
+            mdpNgo.setSzEmailOtp(mdpNGoDetails.getEmailOtp());
+            mdpNgo.setSzPhoneOtp(mdpNGoDetails.getPhoneOtp());
+            mdpNgo.setcAgreeToTerms(mdpNGoDetails.isAgreeToTerms());
+            
             ngoRepository.saveAndFlush(mdpNgo);
         }catch (Exception e)
         {
@@ -75,9 +85,15 @@ public class NgoServiceImpl implements NgoService {
             mdpNgo.setSzIfscCode(mdpNGoDetails.getIfsc());
             Calendar calendar = new GregorianCalendar();
             mdpNgo.setDtVerifiedDate(calendar);
+            
+            mdpNgo.setSzContPerName(mdpNGoDetails.getContactPerson());
+            mdpNgo.setSzUserIdType(mdpNGoDetails.getUserIdType());
+            mdpNgo.setSzEmailOtp(mdpNGoDetails.getEmailOtp());
+            mdpNgo.setSzPhoneOtp(mdpNGoDetails.getPhoneOtp());
+            mdpNgo.setcAgreeToTerms(mdpNGoDetails.isAgreeToTerms());
             ngoRepository.saveAndFlush(mdpNgo);
         }catch (Exception e)
-        {
+        { e.printStackTrace();
             throw  new AppException("Ngo Data Save Failed");
         }
     }

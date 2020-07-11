@@ -7,7 +7,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,8 +32,7 @@ public class User  {
     @Size(max = 40)
     private String szName;
 
-    @NotBlank
-    @Size(max = 15)
+    @Size(max = 40)
     private String szUsername;
 
     @NaturalId
@@ -50,14 +52,37 @@ public class User  {
     private long szMobile;
 
     private long iOtp;
-
-    @Column(name="cUserStatus")
+    
+	@Column(name="cUserStatus")
     private boolean cUserStatus;
 
     private boolean cUserLocked;
 
     @Temporal(TemporalType.DATE)
     private Calendar dtCreated;
+           
+    private String szResetOtp;
+    
+    private String szUserIdType;
+    
+    
+    private LocalDateTime dtOtpExpireDateTime;
+
+    public LocalDateTime getDtOtpExpireDateTime() {
+		return dtOtpExpireDateTime;
+	}
+
+	public void setDtOtpExpireDateTime(LocalDateTime dtOtpExpireTime) {
+		this.dtOtpExpireDateTime = dtOtpExpireTime;
+	}
+
+	public String getSzResetOtp() {
+		return szResetOtp;
+	}
+
+	public void setSzResetOtp(String szResetOtp) {
+		this.szResetOtp = szResetOtp;
+	}
 
     public User() {
 
@@ -150,4 +175,14 @@ public class User  {
     public void setDtCreated(Calendar dtCreated) {
         this.dtCreated = dtCreated;
     }
+
+	public String getSzUserIdType() {
+		return szUserIdType;
+	}
+
+	public void setSzUserIdType(String szUserIdType) {
+		this.szUserIdType = szUserIdType;
+	}
+
+	
 }

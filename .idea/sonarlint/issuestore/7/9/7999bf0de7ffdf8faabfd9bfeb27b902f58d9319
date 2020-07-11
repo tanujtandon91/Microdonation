@@ -1,0 +1,31 @@
+
+\
+java:S1128"ARemove this unused import 'javax.validation.constraints.NotNull'.(áç¥ãüÿÿÿÿ
+M
+java:S1068"2Remove this unused "szAddressLine1" private field.(ÆœâÛüÿÿÿÿ
+M
+java:S1068"2Remove this unused "szAddressLine2" private field.(÷Õß÷øÿÿÿÿ
+E
+java:S1068"*Remove this unused "szCity" private field.(¹”‚Êıÿÿÿÿ
+A
+java:S1068!"+Remove this unused "szState" private field.(ïß‹ª
+H
+java:S1068#"-Remove this unused "szCountry" private field.(®Ö¡ıÿÿÿÿ
+F
+java:S1068%"0Remove this unused "szPostalCode" private field.(ú¿ïõ
+A
+java:S1068'"+Remove this unused "szPhone" private field.(ÂÄ»Ğ
+B
+java:S1068)",Remove this unused "szMobile" private field.(‘´¬
+K
+java:S10681"0Remove this unused "cDonorStatus" private field.(“ÎËÿÿÿÿÿ
+G
+java:S10686"2Remove this unused "fTotalDonation" private field.(«Ğş;
+J
+java:S10688"4Remove this unused "fTotalDonationCy" private field.(ñêáÜ
+J
+java:S1068:"4Remove this unused "fTotalDonationCm" private field.(Êş‘Ô
+R
+java:S1068?"7Remove this unused "fLastDonationAmount" private field.(‚§¹¿øÿÿÿÿ
+N
+java:S1068A"8Remove this unused "szPaymentGatewayCode" private field.(¥îÑ

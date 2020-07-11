@@ -76,8 +76,26 @@ public class MdpNGoDetails {
     private boolean status;
 
     public String veriifiedBy;
+    
+    private String contactPerson;  //added by yogesh
+    
+	private String userIdType; //added by yogesh
+	
+	private String emailOtp; //added by yogesh
+	
+	private String phoneOtp; //added by yogesh
+	
+	private boolean agreeToTerms; //added by yogesh
 
-    public User getUser() {
+    public String getContactPerson() {
+		return contactPerson;
+	}
+
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+
+	public User getUser() {
 		return user;
 	}
 
@@ -284,4 +302,38 @@ public class MdpNGoDetails {
     public void setVeriifiedBy(String veriifiedBy) {
         this.veriifiedBy = veriifiedBy;
     }
+
+	public String getUserIdType() {
+		return userIdType;
+	}
+
+	public void setUserIdType(String userIdType) {
+		this.userIdType = userIdType;
+	}
+
+	public String getEmailOtp() {
+		return emailOtp;
+	}
+
+	public void setEmailOtp(String emailOtp) {
+		this.emailOtp = emailOtp;
+	}
+
+	public String getPhoneOtp() {
+		return phoneOtp;
+	}
+
+	public void setPhoneOtp(String phoneOtp) {
+		this.phoneOtp = phoneOtp;
+	}
+
+	public boolean isAgreeToTerms() {
+		return agreeToTerms;
+	}
+
+	public void setAgreeToTerms(boolean agreeToTerms) {
+		this.agreeToTerms = agreeToTerms;
+	}
+    
+    
 }

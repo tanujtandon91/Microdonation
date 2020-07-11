@@ -22,8 +22,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsBySzUsername(String username);
 
     Boolean existsBySzEmail(String email);
+    
+    Optional<User> findByszResetOtp(String resetOtp);
+
+    Boolean existsBySzMobile(long mobileNo);
 
     @Query(value = "Select * from m_mdp_users where id=:id and c_user_status = 1",nativeQuery = true)
     public User  findByIdAndCUserStatus(@Param("id") Long id);
+
+    //@Qurery(value="Select * from m_mdp_users where sz_email=:email",nativeQuery = true)
+	//boolean existByEmailOrMObile(@Param ("emailIdOrMobileNo")String emailIdOrMobileNo);
+   
+    //public User findByEmailIdOrPhoneNo(@Param("email")String email);
 
 }

@@ -50,6 +50,20 @@ public class MdpDonorDetails {
 	private String mobile;
 
 	private boolean status;
+	
+	private int age;            //added by yogesh
+	
+	private String occupation; //added by yogesh
+	
+	private String userIdType; //added by yogesh
+	
+	private String emailOtp; //added by yogesh
+	
+	private String phoneOtp; //added by yogesh
+	
+	private boolean agreeToTerms; //added by yogesh
+	
+	
 
 	public User getUser() {
 		return user;
@@ -154,4 +168,54 @@ public class MdpDonorDetails {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+	
+	public String getUserIdType() {
+		return userIdType;
+	}
+
+	public void setUserIdType(String userIdType) {
+		this.userIdType = userIdType;
+	}
+
+	public String getEmailOtp() {
+		return emailOtp;
+	}
+
+	public void setEmailOtp(String emailOtp) {
+		this.emailOtp = emailOtp;
+	}
+
+	public String getPhoneOtp() {
+		return phoneOtp;
+	}
+
+	public void setPhoneOtp(String phoneOtp) {
+		this.phoneOtp = phoneOtp;
+	}
+
+	public boolean isAgreeToTerms() {
+		return agreeToTerms;
+	}
+
+	public void setAgreeToTerms(boolean agreeToTerms) {
+		this.agreeToTerms = agreeToTerms;
+	}
+
+	
 }

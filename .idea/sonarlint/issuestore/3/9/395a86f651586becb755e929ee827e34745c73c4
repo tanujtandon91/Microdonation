@@ -1,0 +1,56 @@
+
+H
+java:S1452="&Remove usage of generic wildcard type.(Ôô·úÿÿÿÿ8È¥ñí±.
+x
+java:S1128
+"bRemove this unused import 'com.microdonation.microdonation.service.UserActivationValidateService'.(ğõãÅ
+H
+java:S1452{"&Remove usage of generic wildcard type.(£­ƒÆıÿÿÿÿ8œ¥¬Œ¢.
+I
+java:S1452‘"&Remove usage of generic wildcard type.(ë§ìêüÿÿÿÿ8œ¥¬Œ¢.
+G
+java:S5411e"*Use the primitive boolean expression here.(–Ë‡8œ¥¬Œ¢.
+m
+java:S4488¥"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ƒ‘¸Ïÿÿÿÿÿ8œ¥¬Œ¢.
+G
+java:S5411j"*Use the primitive boolean expression here.(ñä™…8œ¥¬Œ¢.
+W
+java:S1854o":Remove this useless assignment to local variable "result".(Å±Ş÷8œ¥¬Œ¢.
+k
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(òŸ·ğúÿÿÿÿ8œ¥¬Œ¢.
+u
+java:S1128"XRemove this unused import 'com.microdonation.microdonation.service.impl.NgoServiceImpl'.(°›Ãµ8œ¥¬Œ¢.
+{
+java:S1128"YRemove this unused import 'org.springframework.security.crypto.password.PasswordEncoder'.(‰¡ßáÿÿÿÿÿ8œ¥¬Œ¢.
+F
+java:S1125"(Remove the literal "true" boolean value.(ô¯Ù8œ¥¬Œ¢.
+E
+java:S1148C"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œ¥¬Œ¢.
+F
+java:S1148‹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8È¥ñí±.
+G
+java:S5411„"*Use the primitive boolean expression here.(ğÎ£T8œ¥¬Œ¢.
+D
+java:S1452¦"&Remove usage of generic wildcard type.(ãÈÍº8œ¥¬Œ¢.
+H
+java:S1481m"+Remove this unused "result" local variable.(Üñú‰8œ¥¬Œ¢.
+Q
+java:S1128 "/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8œ¥¬Œ¢.
+h	java:S112ˆ"FDefine and throw a dedicated exception instead of using a generic one.(àêÜÒúÿÿÿÿ8œ¥¬Œ¢.
+y
+java:S1128"^Remove this unused import 'com.microdonation.microdonation.event.OnRegistrationCompleteEvent'.(‘ñ¯ÿÿÿÿÿ
+E
+java:S1148N"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8È¥ñí±.
+d
+java:S4488z"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(–ñ«z8œ¥¬Œ¢.
+C
+java:S1452d"&Remove usage of generic wildcard type.(å••®8œ¥¬Œ¢.
+m
+java:S4488›"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÅØ¥ıÿÿÿÿ8œ¥¬Œ¢.
+C
+java:S1452I"&Remove usage of generic wildcard type.(¦Ğ†‚8È¥ñí±.
+I
+java:S1452œ"&Remove usage of generic wildcard type.(ÇÔùáÿÿÿÿÿ8œ¥¬Œ¢.
+U	java:S106?"9Replace this use of System.out or System.err by a logger.(µƒ±¥8È¥ñí±.
+C
+java:S1452U"&Remove usage of generic wildcard type.(—­è€8œ¥¬Œ¢.

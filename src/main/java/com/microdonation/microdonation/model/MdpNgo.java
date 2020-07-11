@@ -71,13 +71,7 @@ public class MdpNgo {
     private String szFundTransferPref;
 
     private boolean cNgoStatus;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtCreatedDate;
-
-    @Temporal(TemporalType.DATE)
-    private Calendar dtVerifiedDate;
-
+    
     private String szVerifiedBy;
 
     private float fTotalPayment;
@@ -85,6 +79,25 @@ public class MdpNgo {
     private float fTotalPaymentCy;
 
     private float fTotalPaymentCm;
+    
+    private String szContPerName;  //added by yogesh
+    
+    private String szUserIdType; //added by yogesh
+    
+    private String szEmailOtp;  //added by yogesh
+    
+    private String szPhoneOtp;  //added by yogesh
+    
+    private boolean cAgreeToTerms;  //added by yogesh
+
+
+
+
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date dtCreatedDate;
+
+    @Temporal(TemporalType.DATE)
+    private Calendar dtVerifiedDate;
 
     public Long getiNgoId() {
         return iNgoId;
@@ -317,4 +330,46 @@ public class MdpNgo {
     public void setfTotalPaymentCm(float fTotalPaymentCm) {
         this.fTotalPaymentCm = fTotalPaymentCm;
     }
+
+	public String getSzContPerName() {
+		return szContPerName;
+	}
+
+	public void setSzContPerName(String szContPerName) {
+		this.szContPerName = szContPerName;
+	}
+
+	public String getSzUserIdType() {
+		return szUserIdType;
+	}
+
+	public void setSzUserIdType(String szUserIdType) {
+		this.szUserIdType = szUserIdType;
+	}
+
+	public String getSzEmailOtp() {
+		return szEmailOtp;
+	}
+
+	public void setSzEmailOtp(String szEmailOtp) {
+		this.szEmailOtp = szEmailOtp;
+	}
+
+	public String getSzPhoneOtp() {
+		return szPhoneOtp;
+	}
+
+	public void setSzPhoneOtp(String szPhoneOtp) {
+		this.szPhoneOtp = szPhoneOtp;
+	}
+
+	public boolean iscAgreeToTerms() {
+		return cAgreeToTerms;
+	}
+
+	public void setcAgreeToTerms(boolean cAgreeToTerms) {
+		this.cAgreeToTerms = cAgreeToTerms;
+	}
+    
+    
 }

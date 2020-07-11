@@ -1,0 +1,68 @@
+
+€
+java:S1128"^Remove this unused import 'org.springframework.security.authentication.AuthenticationManager'.(נ‏–‏ÿÿÿÿ8שחלם±.
+V	java:S106®"9Replace this use of System.out or System.err by a logger.(ע…„¬8שחלם±.
+W
+java:S3655“"9Call "userObject.isPresent()" before accessing the value.(­‰²£8שחלם±.
+X
+java:S1141¾"5Extract this nested try block into a separate method.(¡»¢üשÿÿÿÿ8שחלם±.
+A
+java:S1148‎"#Use a logger to log this exception.(ַ’ַך8שחלם±.
+S
+java:S1128&"1Remove this unused import 'javax.mail.Transport'.(¸½Ú¿üÿÿÿÿ8שחלם±.
+R
+java:S1128-"0Remove this unused import 'java.time.LocalDate'.(›‘¬ט‎ÿÿÿÿ8שחלם±.
+Z	java:S106q"9Replace this use of System.out or System.err by a logger.(¾‹תÿÿÿÿ8שחלם±.
+[	java:S106°"9Replace this use of System.out or System.err by a logger.(˜׳›†ÿÿÿÿÿ8שחלם±.
+<
+java:S2119״"Save and re-use this "Random".(–בָֽ8שחלם±.
+[	java:S106¥"9Replace this use of System.out or System.err by a logger.(ײ®”µתÿÿÿÿ8שחלם±.
+P
+java:S1481¼"-Remove this unused "fromMail" local variable.(¼Ü¯´שÿÿÿÿ8שחלם±.
+F
+java:S1148˜"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8שחלם±.
+h
+java:S1128"FRemove this unused import 'org.springframework.context.MessageSource'.(©־„כשÿÿÿÿ8שחלם±.
+[	java:S106²"9Replace this use of System.out or System.err by a logger.(לÙתÿÿÿÿ8שחלם±.
+Q
+java:S1128%"/Remove this unused import 'javax.mail.Session'.(’”תÿÿÿÿ8שחלם±.
+s	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(׃§בבûÿÿÿÿ8שחלם±.
+V	java:S106ק"9Replace this use of System.out or System.err by a logger.(”¯†8שחלם±.
+U	java:S106¨"9Replace this use of System.out or System.err by a logger.(ÝÚמ8שחלם±.
+U	java:S106o"9Replace this use of System.out or System.err by a logger.(”¯†8שחלם±.
+V	java:S106¢"9Replace this use of System.out or System.err by a logger.(–־–8שחלם±.
+W
+java:S3655Ý"9Call "userObject.isPresent()" before accessing the value.(­‰²£8שחלם±.
+[	java:S106ֵ"9Replace this use of System.out or System.err by a logger.(ְ©ש¿תÿÿÿÿ8שחלם±.
+W
+java:S4973‘"9Use the "equals" method if value comparison was intended.(¬׀‰ֻ8שחלם±.
+_
+java:S1854¼"<Remove this useless assignment to local variable "fromMail".(¼Ü¯´שÿÿÿÿ8שחלם±.
+[	java:S106¹"9Replace this use of System.out or System.err by a logger.(ֱׂ—‎‎ÿÿÿÿ8שחלם±.
+t
+java:S1128"WRemove this unused import 'com.microdonation.microdonation.repository.DonorRepository'.(זÜֽ“8©Úױ¢.
+V	java:S106ˆ"9Replace this use of System.out or System.err by a logger.(ְֶû‎8שחלם±.
+V	java:S106ּ"9Replace this use of System.out or System.err by a logger.(´סˆ›8שחלם±.
+F
+java:S1148ֲ"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8שחלם±.
+F
+java:S1148ֻ"#Use a logger to log this exception.(€ֹװ…‎ÿÿÿÿ8שחלם±.
+U	java:S106’"9Replace this use of System.out or System.err by a logger.(ִֽ»8שחלם±.
+w
+java:S1128"URemove this unused import 'com.microdonation.microdonation.repository.NgoRepository'.(’ײָ­תÿÿÿÿ8©Úױ¢.
+z
+java:S1488…"\Immediately return this expression instead of assigning it to the temporary variable "user".(¶¹ÿו8שחלם±.
+w
+java:S2293ס"YReplace the type specification in this constructor call with the diamond operator ("<>").(¡ףץ§8שחלם±.
+V	java:S106„"9Replace this use of System.out or System.err by a logger.(‚ו›8שחלם±.
+[	java:S106•"9Replace this use of System.out or System.err by a logger.(ÿ³Û†üÿÿÿÿ8שחלם±.
+
+java:S1128"lRemove this unused import 'org.springframework.security.authentication.UsernamePasswordAuthenticationToken'.(ײֶ„Ùüÿÿÿÿ8שחלם±.
+V	java:S106ש"9Replace this use of System.out or System.err by a logger.(ֽױ•ֿ8שחלם±.
+[	java:S106"9Replace this use of System.out or System.err by a logger.(«®¢ÿÿÿÿÿ8שחלם±.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(ֳ¢״״8שחלם±.
+V	java:S106ָ"9Replace this use of System.out or System.err by a logger.(ֲ£ס8שחלם±.
+W
+java:S3655ף"9Call "userObject.isPresent()" before accessing the value.(­‰²£8שחלם±.
+{
+java:S1192e"^Define a constant instead of duplicating this literal "mihir.microdonation@gmail.com" 4 times.(÷כµ8שחלם±.

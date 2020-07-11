@@ -4,19 +4,24 @@ package com.microdonation.microdonation.payload;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
+
+@ApiModel(description = "Contains details For User Registration")
 public class SignUpRequest {
     @NotBlank
     @Size(min = 4, max = 40)
     private String name;
 
-    @NotBlank
-    @Size(min = 3, max = 15)
+   
+    @Size(max = 40)
     private String username;
 
     @NotBlank
@@ -33,7 +38,28 @@ public class SignUpRequest {
     private long contactNo;
 
     private String registrationId;
-
+    
+    private String address; //added by yogesh
+    
+    private String ngoCategory; //added by yogesh
+    
+    private String ngoContPerson; //added by yogesh
+    
+    private int age;             //added by yogesh
+    
+    private String occupation; //added by yogesh
+    
+    private String city; //added by yogesh
+    
+    @ApiModelProperty(notes = "User Id type (Email or Phone No)", required = true)
+    private String userIdType; //added by yogesh
+    
+    private String emailOtp; //added by yogesh
+    
+    private String phoneOtp; //added by yogesh
+    
+    private boolean agreeToTerms; //added by yogesh
+    
     public String getName() {
         return name;
     }
@@ -89,4 +115,86 @@ public class SignUpRequest {
     public void setRegistrationId(String registrationId) {
         this.registrationId = registrationId;
     }
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getNgoCategory() {
+		return ngoCategory;
+	}
+
+	public void setNgoCategory(String ngoCategory) {
+		this.ngoCategory = ngoCategory;
+	}
+
+	public String getNgoContPerson() {
+		return ngoContPerson;
+	}
+
+	public void setNgoContPerson(String ngoContPerson) {
+		this.ngoContPerson = ngoContPerson;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getUserIdType() {
+		return userIdType;
+	}
+
+	public void setUserIdType(String userIdType) {
+		this.userIdType = userIdType;
+	}
+
+	public String getEmailOtp() {
+		return emailOtp;
+	}
+
+	public void setEmailOtp(String emailOtp) {
+		this.emailOtp = emailOtp;
+	}
+
+	public String getPhoneOtp() {
+		return phoneOtp;
+	}
+
+	public void setPhoneOtp(String phoneOtp) {
+		this.phoneOtp = phoneOtp;
+	}
+
+	public boolean isAgreeToTerms() {
+		return agreeToTerms;
+	}
+
+	public void setAgreeToTerms(boolean agreeToTerms) {
+		this.agreeToTerms = agreeToTerms;
+	}
+    
+    
 }

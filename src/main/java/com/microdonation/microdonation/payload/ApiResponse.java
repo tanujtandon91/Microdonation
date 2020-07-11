@@ -2,8 +2,10 @@ package com.microdonation.microdonation.payload;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.List;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,6 +25,13 @@ public class ApiResponse<T extends Object> implements Serializable {
     public ApiResponse(){
 
     }
+
+    private ApiResponse(ResponseBuilder builder) {
+        this.success = builder.success;
+        this.message = builder.message;
+        this.data = builder.data;
+    }
+
     public Boolean getSuccess() {
         return success;
     }
@@ -45,5 +54,34 @@ public class ApiResponse<T extends Object> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public  class ResponseBuilder {
+        @JsonProperty(value = "success")
+        private boolean success;
+        @JsonProperty(value = "message")
+        private String message;
+        @JsonProperty(value = "data")
+        private T data;
+
+        public ResponseBuilder setSuccess(boolean success) {
+            this.success = success;
+            return this;
+        }
+
+
+        public ResponseBuilder setMessage(String message) {
+            this.message = message;
+            return this;
+        }
+
+        public ResponseBuilder setData(T data ) {
+            this.data = data;
+            return this;
+        }
+
+        public ApiResponse build() {
+            return new ApiResponse(this);
+        }
     }
 }
