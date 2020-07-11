@@ -1,8 +1,0 @@
-
-f
-java:S1128"IRemove this unused import 'com.microdonation.microdonation.model.MdpNgo'.(§Ôó8ªºÓå¡.
-p
-java:S1128"SRemove this unused import 'com.microdonation.microdonation.model.TmdpDonorPayment'.(ÓªÙÉ8Í¸Ìå¡.
-m
-java:S1128"KRemove this unused import 'com.microdonation.microdonation.model.MdpDonor'.(ä£ëµùÿÿÿÿ8‚éÌå¡.
-w	java:S116"VRename this field "PaymentType" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†¬Ù­ÿÿÿÿÿ8³ÔÙå¡.

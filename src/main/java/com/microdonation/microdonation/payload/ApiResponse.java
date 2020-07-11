@@ -27,7 +27,7 @@ public class ApiResponse<T extends Object> implements Serializable {
     private ApiResponse(ResponseBuilder builder) {
         this.success = builder.success;
         this.message = builder.message;
-        this.data = builder.data;
+        this.data = (T)builder.data;
     }
 
     public Boolean getSuccess() {
@@ -54,7 +54,7 @@ public class ApiResponse<T extends Object> implements Serializable {
         this.data = data;
     }
 
-    public  class ResponseBuilder {
+    public static class ResponseBuilder<T extends Object> {
         @JsonProperty(value = "success")
         private boolean success;
         @JsonProperty(value = "message")

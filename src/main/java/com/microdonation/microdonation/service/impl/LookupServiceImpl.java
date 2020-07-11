@@ -39,10 +39,8 @@ public class LookupServiceImpl implements LookupService{
         if(tLookupObj.isEmpty()) {
 			throw new DataNotFoundException("No Data Found for lookup type : " + type);
 		}
-        ApiResponse apiResponse = new ApiResponse<Object>();
-        apiResponse.setSuccess(true);
-        apiResponse.setData(lookupResponse);
-        return apiResponse;
+		return new ApiResponse.ResponseBuilder().setSuccess(true).setData(lookupResponse).build();
+
         
 	}
 }

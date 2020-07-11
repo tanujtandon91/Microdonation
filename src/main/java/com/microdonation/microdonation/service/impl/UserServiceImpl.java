@@ -210,7 +210,7 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			throw new AppException(e.getMessage());
 		}
-		return new ApiResponse<>().new ResponseBuilder().setSuccess(true)
+		return new ApiResponse.ResponseBuilder().setSuccess(true)
 				.setMessage("User Created Successfully").setData(user)
 				.build();
 	}

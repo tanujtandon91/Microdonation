@@ -1,7 +1,0 @@
-
-
-java:S4165)"iRemove this useless assignment; "totalAmount" already holds the assigned value along all execution paths.(ฃสþ8฿อมข.
-\
-java:S1854)"?Remove this useless assignment to local variable "totalAmount".(ฃสþ8฿อมข.
-L
-java:S1656)"/Remove or correct this useless self-assignment.(ฃสþ8฿อมข.
