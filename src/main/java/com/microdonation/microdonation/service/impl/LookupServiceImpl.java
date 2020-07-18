@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.microdonation.microdonation.exception.DataNotFoundException;
 import com.microdonation.microdonation.model.tLookup;
 import com.microdonation.microdonation.payload.ApiResponse;
-import com.microdonation.microdonation.payload.LookupRequest;
 import com.microdonation.microdonation.payload.LookupResponse;
 import com.microdonation.microdonation.repository.LookupRepository;
 import com.microdonation.microdonation.service.LookupService;
@@ -21,26 +20,23 @@ public class LookupServiceImpl implements LookupService{
 	LookupRepository lookupRepository;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public ApiResponse fetchLookupValues(LookupRequest lookupRequest) {
-		String type = lookupRequest.getType();
+	public ApiResponse fetchLookupValues(String type) {
 		List<tLookup> tLookupObj =  lookupRepository.fetchLookup(type);
 		LookupResponse lookupResponse = new LookupResponse();
 		LookupResponse.Lookups lookups = null;
 		List<LookupResponse.Lookups> lookuplist = new ArrayList<LookupResponse.Lookups>();
-		for (tLookup tlookup : tLookupObj) { 	
+		for (tLookup tlookup : tLookupObj) {
 			lookups = new LookupResponse.Lookups();
-			lookups.setLookupCode(tlookup.getSzLookupCode()); 	
-			lookups.setLookupType(tlookup.getSzLookupType());	
+			lookups.setLookupCode(tlookup.getSzLookupCode());
+			lookups.setLookupType(tlookup.getSzLookupType());
 			lookups.setLookupValue(tlookup.getSzLookupValue());
 			lookups.setDtCreated(tlookup.getDtCreated());
 			lookuplist.add(lookups);
-	      }
-        lookupResponse.setLookups(lookuplist);
-        if(tLookupObj.isEmpty()) {
+		}
+		lookupResponse.setLookups(lookuplist);
+		if(tLookupObj.isEmpty()) {
 			throw new DataNotFoundException("No Data Found for lookup type : " + type);
 		}
 		return new ApiResponse.ResponseBuilder().setSuccess(true).setData(lookupResponse).build();
-
-        
 	}
 }

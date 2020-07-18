@@ -124,7 +124,7 @@ public class DonorServiceImpl implements DonorService {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new AppException("Frequency Update Failed");
+			throw new AppException("NGO list update Failed");
 		}
 	}
 
@@ -275,9 +275,13 @@ public class DonorServiceImpl implements DonorService {
 
 	public void updateDonorDetails(MdpDonorDetails mdpDonorDetails) {
 		Optional<User> userObj = userRepository.findById(mdpDonorDetails.getUserId());
-
+		if(!userObj.isPresent())
+		{
+			throw new AppException("User does not exist");
+		}
 		try {
 			User user = userObj.get();
+
 			MdpDonor mdpDonorUser = getDonorFromUser(user);
 			Optional<MdpDonor> mdpDonorObject = donorRepository.findById(mdpDonorUser.getiDonorId());
 			MdpDonor mdpDonor = mdpDonorObject.get();

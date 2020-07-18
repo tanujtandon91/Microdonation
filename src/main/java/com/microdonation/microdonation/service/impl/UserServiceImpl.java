@@ -280,6 +280,7 @@ public class UserServiceImpl implements UserService {
 				mdpNGoDetails.setNgoName(mdpNgo.getSzNgoName());
 				mdpNGoDetails.setPincode(mdpNgo.getSzPostalCode());
 				mdpNGoDetails.setPrimaryCategory(mdpNgo.getSzCategoryPrimary());
+				if(null !=mdpNgo.getDtRegistration())
 				mdpNGoDetails.setRedistrationDate(sdf.format(mdpNgo.getDtRegistration().getTime()));
 				mdpNGoDetails.setRegistrationId(mdpNgo.getSzRegistrationId());
 				mdpNGoDetails.setSecondaryCategory(mdpNgo.getSzCategorySecondary());

@@ -175,7 +175,6 @@ public class NgoServiceImpl implements NgoService {
             ngoReferenceResponse.setUserId(user.getId());
             ngoReferenceResponse.setReferences(references);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new AppException("Some Error Occurred ! Could not fetch References");
         }
         return ngoReferenceResponse;

@@ -42,7 +42,7 @@ public class DonorController {
             user.setId(myNgoRequest.getUserId());
             validatorService.validateUser(user);
             donorService.saveOrUpdateMyNgo(myNgoRequest);
-            return ResponseEntity.ok().body(new ApiResponse(true, "Frequency Updated Successfully"));
+            return ResponseEntity.ok().body(new ApiResponse(true, "My NGO Allocated Successfully"));
         } catch (Exception e) {
             return ResponseEntity.ok().body(new ApiResponse(false, e.getMessage()));
         }

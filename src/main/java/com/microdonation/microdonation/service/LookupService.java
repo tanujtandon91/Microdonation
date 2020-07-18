@@ -5,5 +5,5 @@ import com.microdonation.microdonation.payload.*;
 public interface LookupService {
 
 	@SuppressWarnings("rawtypes")
-	public ApiResponse fetchLookupValues(LookupRequest lookupRequest);
+	public ApiResponse fetchLookupValues(String type);
 }
